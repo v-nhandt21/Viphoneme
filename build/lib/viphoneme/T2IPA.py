@@ -773,14 +773,46 @@ SET=[S_onsets, S_nuclei, S_codas#, S_tones
     , Cus_onglides, Cus_offglides, Cus_onoffglides, Cus_qu, Cus_gi]
 DICT={}
 
-#118 in total
-syms=['ʷiə', 'ɯəw', 'iəw', 'ŋ͡m', 'ʷiu', 'k͡p', 'ɤ̆w', 'ɤ̆j', 'kwi', 'ʷɤ̆', 'ʷen', 'ɯəj', 'ʷet', 'uəj', 'iɛ', 't∫', 'ɑ:', 'tʰ', 'ɔj', 'ʷɛ', 'ɪə', 'tʃ', 'ɛj', 'iə', 'aɪ', 'əʊ', 'ɔɪ', 'ɯə', 'ɤ̆', 'aj', 'ɛu', 'ʷa', 'i:', 'ʷă', 'dʒ', 'ăw', 'oj', 'iw', 'aw', 'ʊə', 'eɪ', 'ɯw', 'ɯj', 'kw', 'uə', 'ɤj', 'ɜ:', 'uj', 'ɔ:', 'u:', 'eə', 'ăj', 'ew', 'ʷe', 'ʷi', 'zi', 'aʊ', 'ʷɤ', '?', 'd', 'ɔ', 'o', '.', 'k', 'p', 'η', 't', ',', 'g', ';', '2', 'θ', 'l', 'z', "'", 'n', 'ʒ', 's', 'f', 'm', 'e', 'ɛ', ':', '1', '4', 'ʂ', 'w', ' ', 'ɪ', 'ɲ', 'ð', 'ɣ', '_', 'æ', 'ʊ', 'ə', 'a', 'x', '6', 'v', 'r', 'ɯ', '∫', '!', 'ʈ', 'u', 'i', 'ɤ', 'j', 'ʐ', '5', 'ɒ', '3', 'ă', 'b', 'ŋ', 'h', 'ʌ']
+#121 in total
+syms=['ʷiə', 'uəj', 'iəw', 'k͡p', 'ʷɤ̆', 'ɤ̆j', 'ŋ͡m', 'kwi', 'ɤ̆w', 'ɯəj', 'ʷen', 'ʷiu', 'ʷet', 'ɯəw', 'ʷɛ', 'ʷɤ', 'ɯj', 'oj', 'ăw', 'zi', 'kw', 'aɪ', 'iɛ', 'ɤ̆', 'ɔ:', 'ăj', 'ʷa', 'eə', 'u:', 'uj', 'aʊ', 'uə', 'aj', 'iə', 'iw', 'əʊ', 'ɑ:', 'tʃ', 'ʷe', 'ɛu', 'ɔɪ', 'ʷi', 'eɪ', 'ɤj', 'ɯw', 'ɛj', 'ɔj', 'i:', 't∫', 'ɪə', 'ʷă', 'ɜ:', 'tʰ', 'dʒ', 'ew', 'ʊə', 'ɯə', 'aw', '3', 'θ', 'v', 'ʊ', 'ʤ', 'ɔ', '1', 'ʧ', 'ʈ', ' ', 'd', 'i', 'ɣ', 'ɲ', 'ɤ', '?', 'ɪ', 'l', '.', 'j', ':', 't', 'ʒ', 'ə', 'ʌ', 'm', '!', '∫', 'ð', 'u', 'e', 'w', 'p', 'ʃ', 'æ', "'", 'h', 'o', 'k', '5', 'g', '4', 'n', ';', 'r', 'b', 'ɯ', 'a', 's', 'ʐ', 'η', 'ŋ', 'ɒ', 'ʂ', '_', 'f', ',', 'ɛ', 'z', '6', '2', 'x', 'ă']
+def Parsing(listParse, text, delimit):
+    undefine_symbol = "'"
+    if listParse == "default":
+        listParse=['ʷiə', 'uəj', 'iəw', 'k͡p', 'ʷɤ̆', 'ɤ̆j', 'ŋ͡m', 'kwi', 'ɤ̆w', 'ɯəj', 'ʷen', 'ʷiu', 'ʷet', 'ɯəw', 'ʷɛ', 'ʷɤ', 'ɯj', 'oj', 'ăw', 'zi', 'kw', 'aɪ', 'iɛ', 'ɤ̆', 'ɔ:', 'ăj', 'ʷa', 'eə', 'u:', 'uj', 'aʊ', 'uə', 'aj', 'iə', 'iw', 'əʊ', 'ɑ:', 'tʃ', 'ʷe', 'ɛu', 'ɔɪ', 'ʷi', 'eɪ', 'ɤj', 'ɯw', 'ɛj', 'ɔj', 'i:', 't∫', 'ɪə', 'ʷă', 'ɜ:', 'tʰ', 'dʒ', 'ew', 'ʊə', 'ɯə', 'aw', '3', 'θ', 'v', 'ʊ', 'ʤ', 'ɔ', '1', 'ʧ', 'ʈ', ' ', 'd', 'i', 'ɣ', 'ɲ', 'ɤ', '?', 'ɪ', 'l', '.', 'j', ':', 't', 'ʒ', 'ə', 'ʌ', 'm', '!', '∫', 'ð', 'u', 'e', 'w', 'p', 'ʃ', 'æ', "'", 'h', 'o', 'k', '5', 'g', '4', 'n', ';', 'r', 'b', 'ɯ', 'a', 's', 'ʐ', 'η', 'ŋ', 'ɒ', 'ʂ', '_', 'f', ',', 'ɛ', 'z', '6', '2', 'x', 'ă']
+    listParse.sort(reverse = True,key=len)
+    output=""
+    skip=0
+    for ic,char in enumerate(text):
+        #print(char,skip)
+        check = 0
+        if skip>0:
+            skip=skip-1
+            continue
+        for l in listParse:
+            
+            if len(l) <= len(text[ic:]) and l == text[ic:ic+len(l)]:
+                output+=delimit+l
+                check =1
+                skip=len(l)-1
+                break
+        if check == 0:
+            #Case symbol not in list
+            if str(char) in ["ˈ","ˌ","*"]:
+                continue
+            print("this is not in symbol :"+ char+":")
+            output+=delimit+undefine_symbol
+    return output.rstrip()+delimit
+
+#print("Parsing",Parsing("default","iu   iu","|"))
+
+
+
 def getSymbol():
     for s in SET:
         DICT.update(s)
     list_phoneme=DICT.values()
     list_phoneme=list(list_phoneme)
-    English_phoneme=["p","b","t","d","t∫","dʒ","k","g","f","v","ð","θ","s","z","∫","ʒ","m","n","η","l","r","w","j","ɪ","i:","ʊ","u:","e","ə","ɜ:","ɒ","ɔ:","æ","ʌ","ɑ:","ɪə","ʊə","eə","eɪ","ɔɪ","aɪ","əʊ","aʊ"]
+    English_phoneme=["p","b","t","d","t∫","dʒ","k","g","f","v","ð","θ","s","z","∫","ʒ","m","n","η","l","r","w","j","ɪ","i:","ʊ","u:","e","ə","ɜ:","ɒ","ɔ:","æ","ʌ","ɑ:","ɪə","ʊə","eə","eɪ","ɔɪ","aɪ","əʊ","aʊ",'ʃ',"ʤ","ʧ"]
     word_pad = ["_"]
     space = [" "]
     tone=["1","2","3","4","5","6"]
@@ -798,7 +830,55 @@ def vi2IPA_pitrain(text):
     r=epi.transliterate(text)
     return r
 
-
+def T2IPA_split(text,delimit):
+    sys.path.append('./Rules')      # make sure we can find the Rules files
+    #Setup option
+    glottal = 0
+    pham = 0 
+    cao = 0
+    palatals = 0
+    tokenize = 0
+    dialect='n' #"c""s"
+    tone_type=0
+    if tone_type==0:
+        pham=1
+    else:
+        cao=1
+    #Input text
+    line = text
+    if line =='\n':
+        return ""
+    else:
+        compound = u''
+        ortho = u'' 
+        words = line.split()
+        ## toss len==0 junk
+        words = [word for word in words if len(word)>0]
+        ## hack to get rid of single hyphens or underscores
+        words = [word for word in words if word!=u'-']
+        words = [word for word in words if word!=u'_']
+        for i in range(0,len(words)):
+            word = words[i].strip()
+            ortho += word
+            word = word.strip(punctuation).lower()
+            ## 29.03.16: check if tokenize is true
+            ## if true, call this routine for each substring
+            ## and re-concatenate 
+            if (tokenize and '-' in word) or (tokenize and '_' in word):
+                substrings = re.split(r'(_|-)', word)
+                values = substrings[::2]
+                delimiters = substrings[1::2] + ['']
+                ipa = [convert(x, dialect, glottal, pham, cao, palatals, delimit).strip() for x in values]
+                seq = ''.join(v+d for v,d in zip(ipa, delimiters))
+            else:
+                seq = convert(word, dialect, glottal, pham, cao, palatals, delimit).strip()
+            # concatenate
+            if len(words) >= 2:
+                ortho += ' '
+            if i < len(words)-1:
+                seq = seq+u' '
+            compound = compound + seq
+        return compound
 def T2IPA(text):
     sys.path.append('./Rules')      # make sure we can find the Rules files
     #Setup option
@@ -851,6 +931,55 @@ def T2IPA(text):
         return compound
 EN={"a":"ây","ă":"á","â":"ớ","b":"bi","c":"si","d":"đi","đ":"đê","e":"i","ê":"ê","f":"ép","g":"giy","h":"ếch","i":"ai","j":"giây","k":"cây","l":"eo","m":"em","n":"en","o":"âu","ô":"ô","ơ":"ơ","p":"pi","q":"kiu","r":"a","s":"ét","t":"ti","u":"diu","ư":"ư","v":"vi","w":"đắp liu","x":"ít","y":"quai","z":"giét"}
 import re
+def vi2IPA_split(texts,delimit):
+    tess = texts.split(".")
+    Results =""
+    for text in tess:
+        print("------------------------------------------------------")
+        TN= TTSrawUpper_punc_unknown(text)
+        print("------------------------------------------------------")
+        print("Text normalize:              ",TN)
+        TK= word_tokenize(TN)
+        print("Vietnamese Tokenize:         ",TK)
+        IPA=""
+
+        for tk in TK:
+            ipa = T2IPA_split(tk,delimit).replace(" ","_")
+            if ipa =="":
+                IPA+=delimit+tk+delimit+" "
+            elif ipa[0]=="[" and ipa[-1]=="]":
+                eng = eng_to_ipa.convert(tk)
+                if eng[-1] == "*":
+                    if tk.lower().upper() == tk:
+                        #print("ENGLISH",tk)
+                        #Đọc tiếng anh từng chữ
+                        letter2sound=""
+                        for char in tk:
+                            CHAR = str(char).lower()
+                            if CHAR in list(EN.keys()):
+                                letter2sound+=EN[CHAR]+" "
+                            else:
+                                letter2sound+=char+" "
+                        IPA+=T2IPA_split(letter2sound,delimit)+" "
+                    else:
+                        #Giữ nguyên
+                        IPA+=Parsing("default",tk.lower(),delimit)+" "
+                else:
+                    IPA+=Parsing("default",eng,delimit)+" "
+                #Check tu dien tieng anh Etrain bưc
+                #Neu co Mapping
+                #Neu khong, check co nguyen am
+                #Neu co de nguyen
+                #Neu khong danh van
+                print("                                    ..................Out of domain word: " ,ipa)
+            else:
+                IPA+=ipa+" "
+        IPA=re.sub(delimit+'+', delimit, IPA)
+        IPA=re.sub(' +', ' ', IPA)
+        print("IPA Vietnamese:             ",IPA)
+        print("------------------------------------------------------")
+        Results+= IPA.rstrip()+" "+delimit+"."+delimit+" "
+    return Results.rstrip()
 def vi2IPA(text):
     print("------------------------------------------------------")
     TN= TTSrawUpper_punc_unknown(text)
@@ -875,10 +1004,10 @@ def vi2IPA(text):
                             letter2sound+=EN[CHAR]+" "
                         else:
                             letter2sound+=char+" "
-                    IPA+=T2IPA(letter2sound)+" "
+                    IPA+=T2IPA_split(letter2sound,"")+" "
                 else:
                     #Giữ nguyên
-                    IPA+=tk+" "
+                    IPA+=Parsing("default",tk,"")+" "
             else:
                 IPA+=eng+" "
             #Check tu dien tieng anh Etrain bưc
@@ -992,11 +1121,21 @@ def checkDict():
 ###################################################
 
 #checkDict()
-print(vi2IPA("Ngày hôm nay phải làm xong cái vinorm kết hợp vái viegraph WTO và wro"))
+#print(vi2IPA_split("!Singapo english?   đại học  là IUYE gì     khôngtontaij NIYE BoOK","'"))
+#check các ipa của tiếng anh
+#print(vi2IPA_split("Another table was prepared to show available onsets. Onsets are splitted into 3 types. Type 1 are onsets which has one letter ","/"))
+#Lọc bỏ dấu nhấn của tiếng anh "'"  
+#print(vi2IPA_split("speech? Secondly, we  paper, we investigate work! One is that e language to another by","/").replace("/",""))
+#Case need to be deal:
+# NIYE BoOK
 
-#print(len(getSymbol()))
-#print(getSymbol())
 
+print(len(getSymbol()))
+print(getSymbol())
+if "'" in getSymbol():
+    print("Yes")
+else:
+    print("No")
 '''
 test="t"
 if test in syms:

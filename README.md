@@ -27,10 +27,10 @@ phoneme = vi2IPA("Được viết vào 6/4/2020, có thể xử lí những trư
 Function to convert to phoneme with option split each element
 ```python
 from viphoneme import vi2IPA_split
-delimit ="|"
+delimit ="/"
 vi2IPA_split("Được viết vào 6/4/2020, có thể xử lí những trường hợp chứa English", delimit)
 
->> |d|ɯə|k|6| |v|iə|t|5| |v|a|w|2| |ʂ|ă|w|5| |tʰ|a|ŋ|5| |b|o|n|5| |n|ă|m|1| |h|a|j|1| |ŋ|i|n|2| |x|o|ŋ͡m|1| |ʈ|ă|m|1| |h|a|j|1|_|m|ɯə|j|1| , |k|ɔ|5|_|tʰ|e|4| |s|ɯ|4|_|l|i|5| |ɲ|ɯ|ŋ|3| |ʈ|ɯə|ŋ|2|_|h|ɤ|p|6| |c|ɯə|5| ˈɪŋlɪʃ
+>> /d/ɯə/k/6/ /v/iə/t/5/ /v/a/w/2/ /ʂ/ă/w/5/ /tʰ/a/ŋ/5/ /b/o/n/5/ /n/ă/m/1/ /h/a/j/1/ /ŋ/i/n/2/ /x/o/ŋ͡m/1/ /ʈ/ă/m/1/ /h/a/j/1/_/m/ɯə/j/1/ /,/ /k/ɔ/5/_/tʰ/e/4/ /s/ɯ/4/_/l/i/5/ /ɲ/ɯ/ŋ/3/ /ʈ/ɯə/ŋ/2/_/h/ɤ/p/6/ /c/ɯə/5/ /ɪ/ŋ/l/ɪ/ʃ/ /./
 ```
 
 Parsing, split phoneme element, with listParse is list of avaible symbol, delimit is symbol to split each element
