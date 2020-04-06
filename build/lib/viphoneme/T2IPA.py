@@ -773,8 +773,8 @@ SET=[S_onsets, S_nuclei, S_codas#, S_tones
     , Cus_onglides, Cus_offglides, Cus_onoffglides, Cus_qu, Cus_gi]
 DICT={}
 
-#121 in total
-syms=['ʷiə', 'uəj', 'iəw', 'k͡p', 'ʷɤ̆', 'ɤ̆j', 'ŋ͡m', 'kwi', 'ɤ̆w', 'ɯəj', 'ʷen', 'ʷiu', 'ʷet', 'ɯəw', 'ʷɛ', 'ʷɤ', 'ɯj', 'oj', 'ăw', 'zi', 'kw', 'aɪ', 'iɛ', 'ɤ̆', 'ɔ:', 'ăj', 'ʷa', 'eə', 'u:', 'uj', 'aʊ', 'uə', 'aj', 'iə', 'iw', 'əʊ', 'ɑ:', 'tʃ', 'ʷe', 'ɛu', 'ɔɪ', 'ʷi', 'eɪ', 'ɤj', 'ɯw', 'ɛj', 'ɔj', 'i:', 't∫', 'ɪə', 'ʷă', 'ɜ:', 'tʰ', 'dʒ', 'ew', 'ʊə', 'ɯə', 'aw', '3', 'θ', 'v', 'ʊ', 'ʤ', 'ɔ', '1', 'ʧ', 'ʈ', ' ', 'd', 'i', 'ɣ', 'ɲ', 'ɤ', '?', 'ɪ', 'l', '.', 'j', ':', 't', 'ʒ', 'ə', 'ʌ', 'm', '!', '∫', 'ð', 'u', 'e', 'w', 'p', 'ʃ', 'æ', "'", 'h', 'o', 'k', '5', 'g', '4', 'n', ';', 'r', 'b', 'ɯ', 'a', 's', 'ʐ', 'η', 'ŋ', 'ɒ', 'ʂ', '_', 'f', ',', 'ɛ', 'z', '6', '2', 'x', 'ă']
+#144 in total
+syms=['ɯəj', 'ɤ̆j', 'ʷiə', 'ɤ̆w', 'ɯəw', 'ʷet', 'iəw', 'uəj', 'ʷen', 'tʰw', 'ʷɤ̆', 'ʷiu', 'kwi', 'ŋ͡m', 'k͡p', 'cw', 'jw', 'uə', 'eə', 'bw', 'oj', 'ʷi', 'vw', 'ăw', 'ʈw', 'ʂw', 'aʊ', 'fw', 'ɛu', 'tʰ', 'tʃ', 'ɔɪ', 'xw', 'ʷɤ', 'ɤ̆', 'ŋw', 'ʊə', 'zi', 'ʷă', 'dw', 'eɪ', 'aɪ', 'ew', 'iə', 'ɣw', 'zw', 'ɯj', 'ʷɛ', 'ɯw', 'ɤj', 'ɔ:', 'əʊ', 'ʷa', 'mw', 'ɑ:', 'hw', 'ɔj', 'uj', 'lw', 'ɪə', 'ăj', 'u:', 'aw', 'ɛj', 'iw', 'aj', 'ɜ:', 'kw', 'nw', 't∫', 'ɲw', 'eo', 'sw', 'tw', 'ʐw', 'iɛ', 'ʷe', 'i:', 'ɯə', 'dʒ', 'ɲ', 'θ', 'ʌ', 'l', 'w', '1', 'ɪ', 'ɯ', 'd', '∫', 'p', 'ə', 'u', 'o', '3', 'ɣ', '!', 'ð', 'ʧ', '6', 'ʒ', 'ʐ', 'z', 'v', 'g', 'ă', '_', 'æ', 'ɤ', '2', 'ʤ', 'i', '.', 'ɒ', 'b', 'h', 'n', 'ʂ', 'ɔ', 'ɛ', 'k', 'm', '5', ' ', 'c', 'j', 'x', 'ʈ', ',', '4', 'ʊ', 's', 'ŋ', 'a', 'ʃ', '?', 'r', ':', 'η', 'f', ';', 'e', 't', "'"]
 def Parsing(listParse, text, delimit):
     undefine_symbol = "'"
     if listParse == "default":
@@ -813,6 +813,7 @@ def getSymbol():
     list_phoneme=DICT.values()
     list_phoneme=list(list_phoneme)
     English_phoneme=["p","b","t","d","t∫","dʒ","k","g","f","v","ð","θ","s","z","∫","ʒ","m","n","η","l","r","w","j","ɪ","i:","ʊ","u:","e","ə","ɜ:","ɒ","ɔ:","æ","ʌ","ɑ:","ɪə","ʊə","eə","eɪ","ɔɪ","aɪ","əʊ","aʊ",'ʃ',"ʤ","ʧ"]
+    Special=['jw', 'ŋw', 'bw', 'vw', 'dw', 'eo', 'ʈw', 'mw', 'zw', 'fw', 'tw', 'tʰw', 'ɲw', 'cw', 'ʂw', 'ɣw', 'ʐw', 'xw', 'lw', 'hw', 'nw', 'sw', 'c']
     word_pad = ["_"]
     space = [" "]
     tone=["1","2","3","4","5","6"]
@@ -820,7 +821,7 @@ def getSymbol():
 
     modifi = ["k͡p","ŋ͡m"]
 
-    symbols = list_phoneme + space+word_pad + English_phoneme + punctuation + tone + modifi
+    symbols = list_phoneme + space+word_pad + English_phoneme + punctuation + tone + modifi + Special
     symbols = list(set(symbols))
     symbols.sort(reverse = True,key=len) 
     return symbols
@@ -1132,10 +1133,6 @@ def checkDict():
 
 print(len(getSymbol()))
 print(getSymbol())
-if "'" in getSymbol():
-    print("Yes")
-else:
-    print("No")
 '''
 test="t"
 if test in syms:

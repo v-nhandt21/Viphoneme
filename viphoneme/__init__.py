@@ -1,5 +1,13 @@
 
-
+#  (C1)(w)V(G|C2)+T
+'''
+C1 = initial consonant onset
+w = labiovelar on-glide /w/
+V = vowel nucleus
+G = off-glide coda (/j/ or /w/)
+C2 = final consonant coda
+T = tone.
+'''
 Cus_onsets = { u'b' : u'b', u't' : u't', u'th' : u'tʰ', u'đ' : u'd', u'ch' : u'c', 
 				u'kh' : u'x', u'g' : u'ɣ', u'l' : u'l', u'm' : u'm', u'n': u'n', 
 				u'ngh': u'ŋ', u'nh' : u'ɲ', u'ng' : u'ŋ', u'ph' : u'f', u'v' : u'v', 
@@ -50,9 +58,13 @@ Cus_offglides =  { u'ai' : u'aj', u'ái' : u'aj', u'ài' : u'aj', u'ải' : u'aj
 				  u'oi' : u'ɔj', u'ói' : u'ɔj', u'òi' : u'ɔj', u'ỏi' : u'ɔj', u'õi' : u'ɔj', u'ọi' : u'ɔj',
 				  u'ôi' : u'oj', u'ối' : u'oj', u'ồi' : u'oj', u'ổi' : u'oj', u'ỗi' : u'oj', u'ội' : u'oj',
 				  u'ui' : u'uj', u'úi' : u'uj', u'ùi' : u'uj', u'ủi' : u'uj', u'ũi' : u'uj', u'ụi' : u'uj', 
-				  #u'uy' : u'uj', u'úy' : u'uj', u'ùy' : u'uj', u'ủy' : u'uj', u'ũy' : u'uj', u'ụy' : u'uj', 
+				  
+                  #u'uy' : u'uj', u'úy' : u'uj', u'ùy' : u'uj', u'ủy' : u'uj', u'ũy' : u'uj', u'ụy' : u'uj', 
+                  u'uy' : u'ʷi', u'úy' : u'uj', u'ùy' : u'uj', u'ủy' : u'uj', u'ũy' : u'uj', u'ụy' : u'uj',
+                  #thay để hạn chế trùng âm
                   u'uy' : u'ʷi', u'uý' : u'ʷi', u'uỳ' : u'ʷi', u'uỷ' : u'ʷi', u'uỹ' : u'ʷi', u'uỵ' : u'ʷi',
-				  u'ơi' : u'ɤj', u'ới' : u'ɤj', u'ời' : u'ɤj', u'ởi' : u'ɤj', u'ỡi' : u'ɤj', u'ợi' : u'ɤj', 
+				  
+                  u'ơi' : u'ɤj', u'ới' : u'ɤj', u'ời' : u'ɤj', u'ởi' : u'ɤj', u'ỡi' : u'ɤj', u'ợi' : u'ɤj', 
 				  u'ưi' : u'ɯj', u'ứi' : u'ɯj', u'ừi' : u'ɯj', u'ửi' : u'ɯj', u'ữi' : u'ɯj', u'ựi' : u'ɯj', 
 				  u'ưu' : u'ɯw', u'ứu' : u'ɯw', u'ừu' : u'ɯw', u'ửu' : u'ɯw', u'ữu' : u'ɯw', u'ựu' : u'ɯw',
 
@@ -460,7 +472,8 @@ def vi2IPA_split(texts,delimit):
     Results =""
     for text in tess:
         print("------------------------------------------------------")
-        TN= TTSrawUpper_punc_unknown(text)
+        #TN= TTSrawUpper_punc_unknown(text)
+        TN=text
         print("------------------------------------------------------")
         print("Text normalize:              ",TN)
         TK= word_tokenize(TN)

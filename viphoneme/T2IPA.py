@@ -68,8 +68,12 @@ Cus_offglides =  { u'ai' : u'aj', u'ái' : u'aj', u'ài' : u'aj', u'ải' : u'aj
 				  u'oi' : u'ɔj', u'ói' : u'ɔj', u'òi' : u'ɔj', u'ỏi' : u'ɔj', u'õi' : u'ɔj', u'ọi' : u'ɔj',
 				  u'ôi' : u'oj', u'ối' : u'oj', u'ồi' : u'oj', u'ổi' : u'oj', u'ỗi' : u'oj', u'ội' : u'oj',
 				  u'ui' : u'uj', u'úi' : u'uj', u'ùi' : u'uj', u'ủi' : u'uj', u'ũi' : u'uj', u'ụi' : u'uj', 
+
 				  #u'uy' : u'uj', u'úy' : u'uj', u'ùy' : u'uj', u'ủy' : u'uj', u'ũy' : u'uj', u'ụy' : u'uj', 
+                  u'uy' : u'ʷi', u'úy' : u'uj', u'ùy' : u'uj', u'ủy' : u'uj', u'ũy' : u'uj', u'ụy' : u'uj',
+                  #thay để hạn chế trùng âm
                   u'uy' : u'ʷi', u'uý' : u'ʷi', u'uỳ' : u'ʷi', u'uỷ' : u'ʷi', u'uỹ' : u'ʷi', u'uỵ' : u'ʷi',
+
 				  u'ơi' : u'ɤj', u'ới' : u'ɤj', u'ời' : u'ɤj', u'ởi' : u'ɤj', u'ỡi' : u'ɤj', u'ợi' : u'ɤj', 
 				  u'ưi' : u'ɯj', u'ứi' : u'ɯj', u'ừi' : u'ɯj', u'ửi' : u'ɯj', u'ữi' : u'ɯj', u'ựi' : u'ɯj', 
 				  u'ưu' : u'ɯw', u'ứu' : u'ɯw', u'ừu' : u'ɯw', u'ửu' : u'ɯw', u'ữu' : u'ɯw', u'ựu' : u'ɯw',
@@ -1073,7 +1077,7 @@ def checkDict():
     #Disable convert from 'ɲ' to 'ɲ'' in north
     #Các âm vòng ở đây i chang không vòm: không có w ở trước như: "oa,ua,a" đều như một > must consider (nhưng nếu thêm vào ảnh hưởng chữ qu cũng ra w)
                 #Try to add ʷ to all start o and u as in wiki
-    
+    # *** Problem with ủy onglide and off-glide is a big problem
     #Same positive
     #k <-> c
     #g <-> gh
@@ -1121,7 +1125,7 @@ def checkDict():
 
 ###################################################
 
-#checkDict()
+checkDict()
 #print(vi2IPA_split("!Singapo english?   đại học  là IUYE gì     khôngtontaij NIYE BoOK","'"))
 #check các ipa của tiếng anh
 #print(vi2IPA_split("Another table was prepared to show available onsets. Onsets are splitted into 3 types. Type 1 are onsets which has one letter ","/"))
@@ -1131,8 +1135,8 @@ def checkDict():
 # NIYE BoOK
 
 
-print(len(getSymbol()))
-print(getSymbol())
+#print(len(getSymbol()))
+#print(getSymbol())
 '''
 test="t"
 if test in syms:

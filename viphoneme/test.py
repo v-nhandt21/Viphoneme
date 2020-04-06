@@ -25,6 +25,28 @@ listParse=['ʷiə', 'uəj', 'iəw', 'k͡p', 'ʷɤ̆', 'ɤ̆j', 'ŋ͡m', 'kwi', '
     'g', '4', 'n', ';', 'r', 'b', 'ɯ', 'a', 's', 'ʐ', 'η', 'ŋ', 'ɒ', 'ʂ', '_', 'f', ',', 'ɛ', 'z', '6', '2', 'x', 'ă']
 
 '''
-a=vi2IPA_split("Được viết vào 6/4/2020, có thể xử lí những trường hợp chứa English","/")
-print(a)
+#a=vi2IPA_split("Được viết vào 6/4/2020, có thể xử lí những trường hợp chứa English","/")
+#print(a)
 #
+import sys
+cou=0
+M=[]
+with open("Small.txt",encoding="utf-8") as f:
+    content=f.read().splitlines()
+    for line in content:
+        tex=line.split("~")[1]
+        vi=vi2IPA_split(tex,"/").split("/")
+        for v in vi:
+            if v=="" or v=="(" or v==")" or v=='"' or v=="-" or v=='  ':
+                continue
+            if v not in syms:
+                print(v)
+                cou+=1
+                M.append(v)
+                print (line)
+                
+                sys.exit()
+
+print("Number of phoneme not in dict need to be modified",cou)
+M=list(set(M))
+print(M)
