@@ -1,4 +1,19 @@
+#Grapheme
+Rime_tone=[    "a","ă","â","e","ê","i","o","ô","ơ","u","ư","y","iê","oa","oă","oe","oo","uâ","uê","uô","uơ","uy","ươ","uyê","yê", #blank
+          "á","ắ","ấ","é","ế","í","ó","ố","ớ","ú","ứ","ý","iế","óa","oắ","óe","oó","uấ","uế","uố","ướ","úy","ướ","uyế","yế", #grave
+                                                               "oá",     "oé","óo",                    "uý",      
+          "à","ằ","ầ","è","ề","ì","ò","ồ","ờ","ù","ừ","ỳ","iề","òa","oằ","òe","oò","uầ","uề","uồ","ườ","ùy","ườ","uyề","yề", #acute
+                                                               "oà",     "oè","òo",                    "uỳ",            
+          "ả","ẳ","ẩ","ẻ","ể","ỉ","ỏ","ổ","ở","ủ","ử","ỷ","iể","ỏa","oẳ","ỏe","oỏ","uẩ","uể","uổ","ưở","ủy","ưở","uyể","yể", #hook
+                                                               "oả",     "oẻ","ỏo",                    "uỷ", 
+          "ã","ẵ","ẫ","ẽ","ễ","ĩ","õ","ỗ","ỡ","ũ","ữ","ỹ","iễ","õa","oẵ","õe","oõ","uẫ","uễ","uỗ","ưỡ","ũy","ưỡ","uyễ","yễ", #tilde
+                                                               "oã",     "oẽ","õo",                    "uỹ",            
+          "ạ","ặ","ậ","ẹ","ệ","ị","ọ","ộ","ợ","ụ","ự","ỵ","iệ","ọa","oặ","ọe","oọ","uậ","uệ","uệ","ượ","ụy","ượ","uyệ","yệ", #dot
+                                                               "oạ",     "oẹ","ọo",                    "uỵ"]
 
+Onset=["b","d","h","l","m","n","p","r","s","t","v","x","đ","p",
+        "tr", "th", "ch", "ph","nh","kh","gi","qu",
+        "ngh","ng","gh","g","k","c"]
 #coding: utf-8
 #Custom phoneme follow the https://vi.wikipedia.org/wiki/%C3%82m_v%E1%BB%8B_h%E1%BB%8Dc_ti%E1%BA%BFng_Vi%E1%BB%87t
 #Improve pronoune between N C S
@@ -748,26 +763,28 @@ def convert(word, dialect, glottal, pham, cao, palatals, delimit):
 ########################333
 from vinorm import *
 from underthesea import word_tokenize
-import epitran
+import eng_to_ipa as ipa
+
 
 SET=[S_onsets, S_nuclei, S_codas#, S_tones
     , S_onglides, S_offglides, S_onoffglides, S_qu, S_gi,     C_onsets, C_nuclei, C_codas#, C_tones
     , C_onglides, C_offglides, C_onoffglides, C_qu, C_gi,     N_onsets, N_nuclei, N_codas#, N_tones
-    , N_onglides, N_offglides, N_onoffglides, N_qu, N_gi]
+    , N_onglides, N_offglides, N_onoffglides, N_qu, N_gi,     Cus_onsets, Cus_nuclei, Cus_codas#, N_tones
+    , Cus_onglides, Cus_offglides, Cus_onoffglides, Cus_qu, Cus_gi]
 DICT={}
-syms=['ɲ', 'ɯəw', 'ɯəj', 'ɯə', 'ɯw', 'ɯj', 'ɯ', 'ɤ̆w', 'ɤ̆j', 'ɤ̆', 'ɤj', 'ɤ', 'ɣ', 'ɛu', 'ɛ', 'ɔj', 'ɔ', 'ŋ', 'ăw', 'ăj', 'ă', 'zi', 'z', 'x', 'v', 'uəj', 'uə', 'uj', 'u', 'tʰ', 't', 's', 'p', 'oj', 'o', 'n', 'm', 'l', 'kwi', 'kw', 'k', 'iɛ', 'iəw', 'iə', 'iw', 'iu', 'i', 'h', 'f', 'ew', 'et', 'en', 'ej', 'e', 'd', 'c', 'b', 'aw', 'aj', 'a', '_', '?', ';', ':', '6', '5', '4', '3', '2', '1', '.', ',', '!', ' ']
 
-
+#118 in total
+syms=['ʷiə', 'ɯəw', 'iəw', 'ŋ͡m', 'ʷiu', 'k͡p', 'ɤ̆w', 'ɤ̆j', 'kwi', 'ʷɤ̆', 'ʷen', 'ɯəj', 'ʷet', 'uəj', 'iɛ', 't∫', 'ɑ:', 'tʰ', 'ɔj', 'ʷɛ', 'ɪə', 'tʃ', 'ɛj', 'iə', 'aɪ', 'əʊ', 'ɔɪ', 'ɯə', 'ɤ̆', 'aj', 'ɛu', 'ʷa', 'i:', 'ʷă', 'dʒ', 'ăw', 'oj', 'iw', 'aw', 'ʊə', 'eɪ', 'ɯw', 'ɯj', 'kw', 'uə', 'ɤj', 'ɜ:', 'uj', 'ɔ:', 'u:', 'eə', 'ăj', 'ew', 'ʷe', 'ʷi', 'zi', 'aʊ', 'ʷɤ', '?', 'd', 'ɔ', 'o', '.', 'k', 'p', 'η', 't', ',', 'g', ';', '2', 'θ', 'l', 'z', "'", 'n', 'ʒ', 's', 'f', 'm', 'e', 'ɛ', ':', '1', '4', 'ʂ', 'w', ' ', 'ɪ', 'ɲ', 'ð', 'ɣ', '_', 'æ', 'ʊ', 'ə', 'a', 'x', '6', 'v', 'r', 'ɯ', '∫', '!', 'ʈ', 'u', 'i', 'ɤ', 'j', 'ʐ', '5', 'ɒ', '3', 'ă', 'b', 'ŋ', 'h', 'ʌ']
 def getSymbol():
     for s in SET:
         DICT.update(s)
     list_phoneme=DICT.values()
     list_phoneme=list(list_phoneme)
-    English_phoneme=[]
+    English_phoneme=["p","b","t","d","t∫","dʒ","k","g","f","v","ð","θ","s","z","∫","ʒ","m","n","η","l","r","w","j","ɪ","i:","ʊ","u:","e","ə","ɜ:","ɒ","ɔ:","æ","ʌ","ɑ:","ɪə","ʊə","eə","eɪ","ɔɪ","aɪ","əʊ","aʊ"]
     word_pad = ["_"]
     space = [" "]
     tone=["1","2","3","4","5","6"]
-    punctuation = [".",",","!",":","?",";"] #" ' ( ) Have been removed due to none sound
+    punctuation = [".",",","!",":","?",";","'"] #" ' ( ) Have been removed due to none sound
 
     modifi = ["k͡p","ŋ͡m"]
 
@@ -847,6 +864,11 @@ def vi2IPA(text):
         if ipa =="":
             IPA+=tk+" "
         elif ipa[0]=="[" and ipa[-1]=="]":
+            eng = ipa.convert(tk)
+            if eng[-1] == "*":
+                d=0
+            else:
+                IPA+=eng+" "
             #Check tu dien tieng anh Etrain
             #Neu co Mapping
             #Neu khong, check co nguyen am
@@ -923,17 +945,48 @@ def checkDict():
     #Thay offglide: úy -> wi để phân biệt với úi
 
 
+    #Remain
+    '''
+    di  <-> gi              :               zi1
+    dìm  <-> gìm            :               zim2
+    din  <-> gin            :               zin1
+    díp  <-> gíp            :               zip5
+    gen  <-> ghen           :               ɣɛn1
+    ghì  <-> gì             :               ɣi2
+    ghích  <-> gích         :               ɣitʃ5
+    ia  <-> iê              :               iə1
+    iêu  <-> yêu            :               iəw1
+    khoắng  <-> khuắng              :               xwʷăŋ5
+    khỏe  <-> khoẻ          :               xwʷɛ4
+    khua  <-> khuơ          :               xuə1
+    lóe  <-> loé            :               lwʷɛ5
+    ngét  <-> nghét         :               ŋɛt5
+    ngễu  <-> nghễu         :               ŋɛu3
+    nghía  <-> ngía         :               ŋiə5
+    nghịu  <-> ngịu         :               ŋiw6
+    nghoèo  <-> ngoèo               :               ŋwew2
+    quít  <-> quýt          :               kwit5
+    thủa  <-> thuở          :               tʰuə4
+    tòe  <-> toè            :               twʷɛ2
+    ua  <-> uơ              :               uə1
+    ưa  <-> ươ              :               ɯə1
+    xõa  <-> xoã            :               swʷa3
+    '''
+
     #Ở đây tiết kiệm chi phí chạy máy không normal phoneme về cường độ âm sắc chỉ dừng từ 1->6
     #học ác cho kết quả "c" khác nhau
 
 
-checkDict()
-print(vi2IPA("hác hách chích"))
+
+###################################################
+
+#checkDict()
+print(vi2IPA("Ngày hôm nay phải làm xong cái vinorm kết hợp vái viegraph"))
+
+#print(len(getSymbol()))
+#print(getSymbol())
+
 '''
-print(len(getSymbol()))
-print(getSymbol())
-
-
 test="t"
 if test in syms:
     print(test)
@@ -941,7 +994,9 @@ else:
     print("none")
 '''
 
+###################################################
 
+#Step
 #Vinorm
 #Underthesea
 #For each Convert to phoneme
@@ -953,5 +1008,5 @@ else:
 #Now
 #+Thêm kí tự IPA của tiếng ANH
 #+Thêm xử lí case không có cũng như case Tiếng anh: => dùng etrain cho tiếng anh
-#+Deal case thống nhất âm vực phoneme
+#+Deal case thống nhất âm vực phoneme -> ok
 #+Get lại bộ symbol

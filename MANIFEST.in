@@ -1,0 +1,5 @@
+include LICENSE
+include README.md
+include viphoneme/Popular.txt
+include viphoneme/restore.txt
+include viphoneme/T2IPA.py

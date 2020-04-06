@@ -8,4 +8,9 @@
 
 * Function include: Convert Grapheme to IPA, List same token output, normalize text with vinorm and wordtoken
 
-* Requirment: vinorm, underthesea
+* Requirment: vinorm, underthesea, eng_to_ipa
+
+```python
+from viphoneme import vi2IPA
+phoneme = vi2IPA("hải quay xe")
+```
