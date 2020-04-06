@@ -937,6 +937,9 @@ def T2IPA(text):
 EN={"a":"ây","ă":"á","â":"ớ","b":"bi","c":"si","d":"đi","đ":"đê","e":"i","ê":"ê","f":"ép","g":"giy","h":"ếch","i":"ai","j":"giây","k":"cây","l":"eo","m":"em","n":"en","o":"âu","ô":"ô","ơ":"ơ","p":"pi","q":"kiu","r":"a","s":"ét","t":"ti","u":"diu","ư":"ư","v":"vi","w":"đắp liu","x":"ít","y":"quai","z":"giét"}
 import re
 def vi2IPA_split(texts,delimit):
+    content=[]
+    with open("Popular.txt",encoding="utf-8") as f:
+        content=f.read().splitlines()
     tess = texts.split(".")
     Results =""
     for text in tess:
@@ -946,6 +949,21 @@ def vi2IPA_split(texts,delimit):
         print("Text normalize:              ",TN)
         TK= word_tokenize(TN)
         print("Vietnamese Tokenize:         ",TK)
+        
+
+        for iuv,under_valid in enumerate(TK):
+            token_under=under_valid.split(" ")
+            checkinvalid=0
+            print(token_under)
+            if len(token_under) >1:
+                for tok in token_under:
+                    if tok not in content or "[" in T2IPA(tok):
+                        checkinvalid=1
+            if checkinvalid==1:
+                TK = TK[:iuv] + TK[iuv+1 :]
+                for tok in reversed(token_under):
+                    TK.insert(iuv, tok)
+
         IPA=""
 
         for tk in TK:
@@ -984,6 +1002,14 @@ def vi2IPA_split(texts,delimit):
         print("IPA Vietnamese:             ",IPA)
         print("------------------------------------------------------")
         Results+= IPA.rstrip()+" "+delimit+"."+delimit+" "
+    
+    #For checking: need much memory
+    '''
+    check_sym="ɯəjɤ̆jʷiəɤ̆wɯəwʷetiəwuəjʷentʰwʷɤ̆ʷiukwiŋ͡mk͡pcwjwuəeəbwojʷivwăwʈwʂwaʊfwɛutʰtʃɔɪxwʷɤɤ̆ŋwʊəziʷădweɪaɪewiəɣwzwɯjʷɛɯwɤjɔ:əʊʷamwɑ:hwɔjujlwɪəăju:awɛjiwajɜ:kwnwt∫ɲweoswtwʐwiɛʷei:ɯədʒɲθʌlw1ɪɯd∫pəuo3ɣ!ðʧ6ʒʐzvgă_æɤ2ʤi.ɒbhnʂɔɛkm5cjxʈ,4ʊsŋaʃ?r:ηf;et'"
+    for ine,res in enumerate(Results):
+        if res not in check_sym:
+            Results[ine]="'"
+    '''
     return Results.rstrip()
 def vi2IPA(text):
     print("------------------------------------------------------")

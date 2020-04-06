@@ -50,3 +50,6 @@ with open("Small.txt",encoding="utf-8") as f:
 print("Number of phoneme not in dict need to be modified",cou)
 M=list(set(M))
 print(M)
+
+#  nếu làm được những điều trên chúng tôi nghĩ bạn sẽ là người mở shop quần áo trẻ em thành công nhất
+check_sym="ɯəjɤ̆jʷiəɤ̆wɯəwʷetiəwuəjʷentʰwʷɤ̆ʷiukwiŋ͡mk͡pcwjwuəeəbwojʷivwăwʈwʂwaʊfwɛutʰtʃɔɪxwʷɤɤ̆ŋwʊəziʷădweɪaɪewiəɣwzwɯjʷɛɯwɤjɔ:əʊʷamwɑ:hwɔjujlwɪəăju:awɛjiwajɜ:kwnwt∫ɲweoswtwʐwiɛʷei:ɯədʒɲθʌlw1ɪɯd∫pəuo3ɣ!ðʧ6ʒʐzvgă_æɤ2ʤi.ɒbhnʂɔɛkm5cjxʈ,4ʊsŋaʃ?r:ηf;et'"
