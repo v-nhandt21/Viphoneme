@@ -1,0 +1,43 @@
+Metadata-Version: 2.1
+Name: viphoneme
+Version: 0.0.6
+Summary: Python package for convert text to phoneme ipa, use for cross language embedding Text-to-speech Reseach
+Home-page: https://github.com/NoahDrisort/Vie_Text2Graph2IPA
+Author: AILAB
+Author-email: donhanbentre@gmail.com
+License: AILAB
+Description: # Project Custom from vPhon for convert Raw text to IPA
+        
+        * Use for embeding TTS model using Tacotron2
+        
+        * By using IPA, tacotron2 can deal with cases cross language as a proposal from futre paper
+        
+        * Include diary research in phoneme of Vietnamese, painful and character of Viet
+        
+        * Function include: Convert Grapheme to IPA, List same token output, normalize text with vinorm and wordtoken
+        
+        * Requirment: vinorm, underthesea, eng_to_ipa
+        
+        ```
+        pip install vinorm
+        pip install underthesea
+        pip install eng_to_ipa
+        ```
+        
+        Usage:
+        
+        ```python
+        from viphoneme import vi2IPA
+        phoneme = vi2IPA("Được viết vào 6/4/2020, có thể xử lí những trường hợp chứa English")
+        
+        >> dɯək6 viət5 vaw2 ʂăw5 tʰaŋ5 bon5 năm1 haj1 ŋin2 xoŋ͡m1 ʈăm1 haj1_mɯəj1 , kɔ5_tʰe4 sɯ4_li5 ɲɯŋ3 ʈɯəŋ2_hɤp6 cɯə5 ˈɪŋlɪʃ
+        ```
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: License :: Free for non-commercial use
+Classifier: Natural Language :: Vietnamese
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: C++
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Description-Content-Type: text/markdown

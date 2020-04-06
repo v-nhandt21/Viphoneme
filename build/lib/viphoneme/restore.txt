@@ -1,137 +1,8 @@
-#Grapheme
-Rime_tone=[    "a","ă","â","e","ê","i","o","ô","ơ","u","ư","y","iê","oa","oă","oe","oo","uâ","uê","uô","uơ","uy","ươ","uyê","yê", #blank
-          "á","ắ","ấ","é","ế","í","ó","ố","ớ","ú","ứ","ý","iế","óa","oắ","óe","oó","uấ","uế","uố","ướ","úy","ướ","uyế","yế", #grave
-                                                               "oá",     "oé","óo",                    "uý",      
-          "à","ằ","ầ","è","ề","ì","ò","ồ","ờ","ù","ừ","ỳ","iề","òa","oằ","òe","oò","uầ","uề","uồ","ườ","ùy","ườ","uyề","yề", #acute
-                                                               "oà",     "oè","òo",                    "uỳ",            
-          "ả","ẳ","ẩ","ẻ","ể","ỉ","ỏ","ổ","ở","ủ","ử","ỷ","iể","ỏa","oẳ","ỏe","oỏ","uẩ","uể","uổ","ưở","ủy","ưở","uyể","yể", #hook
-                                                               "oả",     "oẻ","ỏo",                    "uỷ", 
-          "ã","ẵ","ẫ","ẽ","ễ","ĩ","õ","ỗ","ỡ","ũ","ữ","ỹ","iễ","õa","oẵ","õe","oõ","uẫ","uễ","uỗ","ưỡ","ũy","ưỡ","uyễ","yễ", #tilde
-                                                               "oã",     "oẽ","õo",                    "uỹ",            
-          "ạ","ặ","ậ","ẹ","ệ","ị","ọ","ộ","ợ","ụ","ự","ỵ","iệ","ọa","oặ","ọe","oọ","uậ","uệ","uệ","ượ","ụy","ượ","uyệ","yệ", #dot
-                                                               "oạ",     "oẹ","ọo",                    "uỵ"]
 
-Onset=["b","d","h","l","m","n","p","r","s","t","v","x","đ","p",
-        "tr", "th", "ch", "ph","nh","kh","gi","qu",
-        "ngh","ng","gh","g","k","c"]
 #coding: utf-8
 #Custom phoneme follow the https://vi.wikipedia.org/wiki/%C3%82m_v%E1%BB%8B_h%E1%BB%8Dc_ti%E1%BA%BFng_Vi%E1%BB%87t
-#Improve pronoune between N C S
 
-Cus_onsets = { u'b' : u'b', u't' : u't', u'th' : u'tʰ', u'đ' : u'd', u'ch' : u'c', 
-				u'kh' : u'x', u'g' : u'ɣ', u'l' : u'l', u'm' : u'm', u'n': u'n', 
-				u'ngh': u'ŋ', u'nh' : u'ɲ', u'ng' : u'ŋ', u'ph' : u'f', u'v' : u'v', 
-				u'x' : u's', u'd' : u'z', u'h' : u'h', u'p' : u'p', u'qu' : u'kw',
-				u'gi' : u'j', u'tr' : u'ʈ', u'k' : u'k', u'c' : u'k', u'gh' : u'ɣ', 
-				u'r' : u'ʐ', u's' : u'ʂ', u'gi': u'j'}
-				
-			  
-Cus_nuclei = { u'a' : u'a', u'á' : u'a', u'à' : u'a', u'ả' : u'a', u'ã' : u'a', u'ạ' : u'a', 
-				u'â' : u'ɤ̆', u'ấ' : u'ɤ̆', u'ầ' : u'ɤ̆', u'ẩ' : u'ɤ̆', u'ẫ' : u'ɤ̆', u'ậ' : u'ɤ̆',
-				u'ă' : u'ă', u'ắ' : u'ă', u'ằ' : u'ă', u'ẳ' : u'ă', u'ẵ' : u'ă', u'ặ' : u'ă',
-				u'e' : u'ɛ', u'é' : u'ɛ', u'è' : u'ɛ', u'ẻ' : u'ɛ', u'ẽ' : u'ɛ', u'ẹ' : u'ɛ',
-				u'ê' : u'e', u'ế' : u'e', u'ề' : u'e', u'ể' : u'e', u'ễ' : u'e', u'ệ' : u'e',
-				u'i' : u'i', u'í' : u'i', u'ì' : u'i', u'ỉ' : u'i', u'ĩ' : u'i', u'ị' : u'i',
-				u'o' : u'ɔ', u'ó' : u'ɔ', u'ò' : u'ɔ', u'ỏ' : u'ɔ', u'õ' : u'ɔ', u'ọ' : u'ɔ',
-				u'ô' : u'o', u'ố' : u'o', u'ồ' : u'o', u'ổ' : u'o', u'ỗ' : u'o', u'ộ' : u'o',
-				u'ơ' : u'ɤ', u'ớ' : u'ɤ', u'ờ' : u'ɤ', u'ở' : u'ɤ', u'ỡ' : u'ɤ', u'ợ' : u'ɤ',
-				u'u' : u'u', u'ú' : u'u', u'ù' : u'u', u'ủ' : u'u', u'ũ' : u'u', u'ụ' : u'u',
-				u'ư' : u'ɯ', u'ứ' : u'ɯ', u'ừ' : u'ɯ', u'ử' : u'ɯ', u'ữ' : u'ɯ', u'ự' : u'ɯ',
-				u'y' : u'i', u'ý' : u'i', u'ỳ' : u'i', u'ỷ' : u'i', u'ỹ' : u'i', u'ỵ' : u'i',
-				
-				u'eo' : u'eo', u'éo' : u'eo', u'èo' : u'eo', u'ẻo' : u'eo', u'ẽo': u'eo', u'ẹo' : u'eo',
-				u'êu' : u'ɛu', u'ếu' : u'ɛu', u'ều' : u'ɛu', u'ểu' : u'ɛu', u'ễu': u'ɛu', u'ệu' : u'ɛu',
-				u'ia' : u'iə', u'ía' : u'iə', u'ìa' : u'iə', u'ỉa' : u'iə', u'ĩa' : u'iə', u'ịa' : u'iə',
-				u'ia' : u'iə', u'iá' : u'iə', u'ià' : u'iə', u'iả' : u'iə', u'iã' : u'iə', u'iạ' : u'iə',
-				u'iê' : u'iə', u'iế' : u'iə', u'iề' : u'iə', u'iể' : u'iə', u'iễ' : u'iə', u'iệ' : u'iə',
-				u'oo' : u'ɔ', u'óo' : u'ɔ', u'òo' : u'ɔ', u'ỏo' : u'ɔ', u'õo' : u'ɔ', u'ọo' : u'ɔ',
-				u'oo' : u'ɔ', u'oó' : u'ɔ', u'oò' : u'ɔ', u'oỏ' : u'ɔ', u'oõ' : u'ɔ', u'oọ' : u'ɔ',
-				u'ôô' : u'o', u'ốô' : u'o', u'ồô' : u'o', u'ổô' : u'o', u'ỗô' : u'o', u'ộô' : u'o',				                 
-                u'ôô' : u'o', u'ôố' : u'o', u'ôồ' : u'o', u'ôổ' : u'o', u'ôỗ' : u'o', u'ôộ' : u'o',				                  
-                u'ua' : u'uə', u'úa' : u'uə', u'ùa' : u'uə', u'ủa' : u'uə', u'ũa' : u'uə', u'ụa' : u'uə',
-				u'uô' : u'uə', u'uố' : u'uə', u'uồ' : u'uə', u'uổ' : u'uə', u'uỗ' : u'uə', u'uộ' : u'uə',
-				u'ưa' : u'ɯə', u'ứa' : u'ɯə', u'ừa' : u'ɯə', u'ửa' : u'ɯə', u'ữa' : u'ɯə', u'ựa' : u'ɯə',
-				u'ươ' : u'ɯə', u'ướ' : u'ɯə', u'ườ' : u'ɯə', u'ưở' : u'ɯə', u'ưỡ' : u'ɯə', u'ượ' : u'ɯə',
-				u'yê' : u'iɛ', u'yế' : u'iɛ', u'yề' : u'iɛ', u'yể' : u'iɛ', u'yễ' : u'iɛ', u'yệ' : u'iɛ', 
-                u'uơ' : u'uə',  u'uở' : u'uə', u'uờ': u'uə', u'uở' : u'uə', u'uỡ' : u'uə', u'uợ' : u'uə',
-				}
-				         
-	         
-Cus_offglides =  { u'ai' : u'aj', u'ái' : u'aj', u'ài' : u'aj', u'ải' : u'aj', u'ãi' : u'aj', u'ại' : u'aj',
-				  u'ay' : u'ăj', u'áy' : u'ăj', u'ày' : u'ăj', u'ảy' : u'ăj', u'ãy' : u'ăj', u'ạy' : u'ăj',
-				  u'ao' : u'aw', u'áo' : u'aw', u'ào' : u'aw', u'ảo' : u'aw', u'ão' : u'aw', u'ạo' : u'aw',
-				  u'au' : u'ăw', u'áu' : u'ăw', u'àu' : u'ăw', u'ảu' : u'ăw', u'ãu' : u'ăw', u'ạu' : u'ăw',
-				  u'ây' : u'ɤ̆j',  u'ấy' : u'ɤ̆j',  u'ầy' : u'ɤ̆j', u'ẩy' : u'ɤ̆j', u'ẫy' : u'ɤ̆j', u'ậy' : u'ɤ̆j', 
-				  u'âu' : u'ɤ̆w', u'ấu' : u'ɤ̆w', u'ầu': u'ɤ̆w', u'ẩu' : u'ɤ̆w', u'ẫu' : u'ɤ̆w', u'ậu' : u'ɤ̆w',
-				  u'eo' : u'ew', u'éo' : u'ew', u'èo' : u'ew', u'ẻo' : u'ew', u'ẽo' : u'ew', u'ẹo' : u'ew',
-				  u'iu' : u'iw', u'íu' : u'iw', u'ìu' : u'iw', u'ỉu' : u'iw', u'ĩu' : u'iw', u'ịu' : u'iw',
-				  u'oi' : u'ɔj', u'ói' : u'ɔj', u'òi' : u'ɔj', u'ỏi' : u'ɔj', u'õi' : u'ɔj', u'ọi' : u'ɔj',
-				  u'ôi' : u'oj', u'ối' : u'oj', u'ồi' : u'oj', u'ổi' : u'oj', u'ỗi' : u'oj', u'ội' : u'oj',
-				  u'ui' : u'uj', u'úi' : u'uj', u'ùi' : u'uj', u'ủi' : u'uj', u'ũi' : u'uj', u'ụi' : u'uj', 
-				  #u'uy' : u'uj', u'úy' : u'uj', u'ùy' : u'uj', u'ủy' : u'uj', u'ũy' : u'uj', u'ụy' : u'uj', 
-                  u'uy' : u'ʷi', u'uý' : u'ʷi', u'uỳ' : u'ʷi', u'uỷ' : u'ʷi', u'uỹ' : u'ʷi', u'uỵ' : u'ʷi',
-				  u'ơi' : u'ɤj', u'ới' : u'ɤj', u'ời' : u'ɤj', u'ởi' : u'ɤj', u'ỡi' : u'ɤj', u'ợi' : u'ɤj', 
-				  u'ưi' : u'ɯj', u'ứi' : u'ɯj', u'ừi' : u'ɯj', u'ửi' : u'ɯj', u'ữi' : u'ɯj', u'ựi' : u'ɯj', 
-				  u'ưu' : u'ɯw', u'ứu' : u'ɯw', u'ừu' : u'ɯw', u'ửu' : u'ɯw', u'ữu' : u'ɯw', u'ựu' : u'ɯw',
 
-				  u'iêu' : u'iəw', u'iếu' : u'iəw', u'iều' : u'iəw', u'iểu' : u'iəw', u'iễu' : u'iəw', u'iệu' : u'iəw',
-				  u'yêu' : u'iəw', u'yếu' : u'iəw', u'yều' : u'iəw', u'yểu' : u'iəw', u'yễu' : u'iəw', u'yệu' : u'iəw', 
-				  u'uôi' : u'uəj', u'uối' : u'uəj', u'uồi' : u'uəj', u'uổi' : u'uəj', u'uỗi' : u'uəj', u'uội' : u'uəj', 
-				  u'ươi' : u'ɯəj', u'ưới' : u'ɯəj', u'ười' : u'ɯəj', u'ưởi' : u'ɯəj', u'ưỡi' : u'ɯəj', u'ượi' : u'ɯəj', 
-				  u'ươu' : u'ɯəw', u'ướu' : u'ɯəw', u'ườu' : u'ɯəw', u'ưởu' : u'ɯəw', 'ưỡu' : u'ɯəw', u'ượu' : u'ɯəw'	 
-			    }
-#Các âm vòng ở đây i chang không vòm: không có w ở trước		=> Try to add ʷ	
-Cus_onglides =   { u'oa' : u'ʷa', u'oá' : u'ʷa', u'oà' : u'ʷa', u'oả' : u'ʷa', u'oã' : u'ʷa', u'oạ' : u'ʷa', 
-		              u'óa' : u'ʷa', u'òa' : u'ʷa', u'ỏa' : u'ʷa', u'õa' : u'ʷa', u'ọa' : u'ʷa', 
-			      u'oă' : u'ʷă', u'oắ' : u'ʷă', u'oằ' : u'ʷă', u'oẳ' : u'ʷă', u'oẵ' : u'ʷă', u'oặ' : u'ʷă', 	
-			      u'oe' : u'ʷɛ', u'oé' : u'ʷɛ', u'oè' : u'ʷɛ', u'oẻ' : u'ʷɛ', u'oẽ' : u'ʷɛ', u'oẹ' : u'ʷɛ', 	
-			      u'oe' : u'ʷɛ', u'óe' : u'ʷɛ', u'òe' : u'ʷɛ', u'ỏe' : u'ʷɛ', u'õe' : u'ʷɛ', u'ọe' : u'ʷɛ', 	
-			      u'ua' : u'ʷa', u'uá' : u'ʷa', u'uà' : u'ʷa', u'uả' : u'ʷa', u'uã' : u'ʷa', u'uạ' : u'ʷa', 
-			      u'uă' : u'ʷă', u'uắ' : u'ʷă', u'uằ' : u'ʷă', u'uẳ' : u'ʷă', u'uẵ' : u'ʷă', u'uặ' : u'ʷă', 	
-			      u'uâ' : u'ʷɤ̆', u'uấ' : u'ʷɤ̆', u'uầ' : u'ʷɤ̆', u'uẩ' : u'ʷɤ̆', u'uẫ' : u'ʷɤ̆', u'uậ' : u'ʷɤ̆', 
-			      u'ue' : u'ʷɛ', u'ué' : u'ʷɛ', u'uè' : u'ʷɛ', u'uẻ' : u'ʷɛ', u'uẽ' : u'ʷɛ', u'uẹ' : u'ʷɛ', 
-			      u'uê' : u'ʷe', u'uế' : u'ʷe', u'uề' : u'ʷe', u'uể' : u'ʷe', u'uễ' : u'ʷe', u'uệ' : u'ʷe', 
-			      u'uơ' : u'ʷɤ', u'uớ' : u'ʷɤ', u'uờ' : u'ʷɤ', u'uở' : u'ʷɤ', u'uỡ' : u'ʷɤ', u'uợ' : u'ʷɤ', 
-			      u'uy' : u'ʷi', u'uý' : u'ʷi', u'uỳ' : u'ʷi', u'uỷ' : u'ʷi', u'uỹ' : u'ʷi', u'uỵ' : u'ʷi',
-		          u'uya' : u'ʷiə', u'uyá' : u'ʷiə', u'uyà' : u'ʷiə', u'uyả' : u'ʷiə', u'uyã' : u'ʷiə', u'uyạ' : u'ʷiə', 
-				  u'uyê' : u'ʷiə', u'uyế' : u'ʷiə', u'uyề' : u'ʷiə', u'uyể' : u'ʷiə', u'uyễ' : u'ʷiə', u'uyệ' : u'ʷiə', 
-				  u'uyu' : u'ʷiu', u'uyú' : u'ʷiu', u'uyù' : u'ʷiu', u'uyủ' : u'ʷiu', u'uyũ' : u'ʷiu', u'uyụ' : u'ʷiu', 
-				  u'uyu' : u'ʷiu', u'uýu' : u'ʷiu', u'uỳu' : u'ʷiu', u'uỷu' : u'ʷiu', u'uỹu' : u'ʷiu', u'uỵu' : u'ʷiu',
-                  u'oen' : u'ʷen', u'oén' : u'ʷen', u'oèn' : u'ʷen', u'oẻn' : u'ʷen', u'oẽn' : u'ʷen', u'oẹn' : u'ʷen', 	
-                  u'oet' : u'ʷet', u'oét' : u'ʷet', u'oèt' : u'ʷet', u'oẻt' : u'ʷet', u'oẽt' : u'ʷet', u'oẹt' : u'ʷet' 	
-				}
-
-Cus_onoffglides = { u'oe' : u'ɛj', u'oé' : u'ɛj', u'oè' : u'ɛj', u'oẻ' : u'ɛj', u'oẽ' : u'ɛj', u'oẹ' : u'ɛj', 
-				   u'oai' : u'aj', u'oái' : u'aj', u'oài' : u'aj', u'oải' : u'aj', u'oãi' : u'aj', u'oại' : u'aj',
-				   u'oay' : u'ăj', u'oáy' : u'ăj', u'oày' : u'ăj', u'oảy' : u'ăj', u'oãy' : u'ăj', u'oạy' : u'ăj',
-				   u'oao' : u'aw', u'oáo' : u'aw', u'oào' : u'aw', u'oảo' : u'aw', u'oão' : u'aw', u'oạo' : u'aw',
-				   u'oeo' : u'ew', u'oéo' : u'ew', u'oèo' : u'ew', u'oẻo' : u'ew', u'oẽo' : u'ew', u'oẹo' : u'ew',
-				   u'oeo' : u'ew', u'óeo' : u'ew', u'òeo' : u'ew', u'ỏeo' : u'ew', u'õeo' : u'ew', u'ọeo' : u'ew',
-				   u'ueo' : u'ew', u'uéo' : u'ew', u'uèo' : u'ew', u'uẻo' : u'ew', u'uẽo' : u'ew', u'uẹo' : u'ew',
-				   u'uai' : u'aj', u'uái' : u'aj', u'uài' : u'aj', u'uải' : u'aj', u'uãi' : u'aj', u'uại' : u'aj',
-				   u'uay' : u'ăj', u'uáy' : u'ăj', u'uày' : u'ăj', u'uảy' : u'ăj', u'uãy' : u'ăj', u'uạy' : u'ăj',
-				   u'uây' : u'ɤ̆j', u'uấy' : u'ɤ̆j', u'uầy' : u'ɤ̆j', u'uẩy' : u'ɤ̆j', u'uẫy' : u'ɤ̆j', u'uậy' : u'ɤ̆j'
-				 }
-
-Cus_codas = { u'p' : u'p', u't' : u't', u'c' : u'k', u'm' : u'm', u'n' : u'n', u'ng' : u'ŋ', u'nh' : u'ɲ', u'ch' : u'tʃ' }
-
-Cus_tones_p =     { u'á' : 5, u'à' : 2, u'ả' : 4, u'ã' : 3, u'ạ' : 6, 
-				u'ấ' : 5, u'ầ' : 2, u'ẩ' : 4, u'ẫ' : 3, u'ậ' : 6,
-				u'ắ' : 5, u'ằ' : 2, u'ẳ' : 4, u'ẵ' : 3, u'ặ' : 6,
-				u'é' : 5, u'è' : 2, u'ẻ' : 4, u'ẽ' : 3, u'ẹ' : 6,
-				u'ế' : 5, u'ề' : 2, u'ể' : 4, u'ễ' : 3, u'ệ' : 6,
-				u'í' : 5, u'ì' : 2, u'ỉ' : 4, u'ĩ' : 3, u'ị' : 6,
-				u'ó' : 5, u'ò' : 2, u'ỏ' : 4, u'õ' : 3, u'ọ' : 6,
-				u'ố' : 5, u'ồ' : 2, u'ổ' : 4, u'ỗ' : 3, u'ộ' : 6,
-				u'ớ' : 5, u'ờ' : 2, u'ở' : 4, u'ỡ' : 3, u'ợ' : 6,
-				u'ú' : 5, u'ù' : 2, u'ủ' : 4, u'ũ' : 3, u'ụ' : 6,
-				u'ứ' : 5, u'ừ' : 2, u'ử' : 4, u'ữ' : 3, u'ự' : 6,
-				u'ý' : 5, u'ỳ' : 2, u'ỷ' : 4, u'ỹ' : 3, u'ỵ' : 6,
-			  }
-			  
-Cus_gi = { u'gi' : u'zi', u'gí': u'zi', u'gì' : u'zi', u'gì' : u'zi', u'gĩ' : u'zi', u'gị' : u'zi'}
-
-Cus_qu = {u'quy' : u'kwi', u'qúy' : u'kwi', u'qùy' : u'kwi', u'qủy' : u'kwi', u'qũy' : u'kwi', u'qụy' : u'kwi'}
 
 
 #######################################################
@@ -199,6 +70,7 @@ N_offglides =  { u'ai' : u'aj', u'ái' : u'aj', u'ài' : u'aj', u'ải' : u'aj',
 				  u'ươi' : u'ɯəj', u'ưới' : u'ɯəj', u'ười' : u'ɯəj', u'ưởi' : u'ɯəj', u'ưỡi' : u'ɯəj', u'ượi' : u'ɯəj', 
 				  u'ươu' : u'ɯəw', u'ướu' : u'ɯəw', u'ườu' : u'ɯəw', u'ưởu' : u'ɯəw', 'ưỡu' : u'ɯəw', u'ượu' : u'ɯəw'	 
 			    }
+				
 N_onglides =   { u'oa' : u'a', u'oá' : u'a', u'oà' : u'a', u'oả' : u'a', u'oã' : u'a', u'oạ' : u'a', 
 		              u'óa' : u'a', u'òa' : u'a', u'ỏa' : u'a', u'õa' : u'a', u'ọa' : u'a', 
 			      u'oă' : u'ă', u'oắ' : u'ă', u'oằ' : u'ă', u'oẳ' : u'ă', u'oẵ' : u'ă', u'oặ' : u'ă', 	
@@ -562,21 +434,10 @@ def trans(word, dialect, glottal, pham, cao, palatals):
     elif dialect == 's':
         onsets, nuclei, codas, tones, onglides, offglides, onoffglides, qu, gi = S_onsets, S_nuclei, S_codas, S_tones, S_onglides, S_offglides, S_onoffglides, S_qu, S_gi
 
-
-    #Custom
-    onsets, nuclei, codas, onglides, offglides, onoffglides, qu, gi = Cus_onsets, Cus_nuclei, Cus_codas,  Cus_onglides, Cus_offglides, Cus_onoffglides, Cus_qu, Cus_gi
-
-
-
     if pham or cao:
         if dialect == 'n': tones_p = N_tones_p
         if dialect == 'c': tones_p = C_tones_p
         if dialect == 's': tones_p = S_tones_p
-
-        #Custom
-        tones_p = Cus_tones_p
-
-
         tones = tones_p
 
     ons = ''
@@ -668,14 +529,11 @@ def trans(word, dialect, glottal, pham, cao, palatals):
 
             # Final palatals (Northern dialect)
             if nuc not in [u'i', u'e', u'ɛ']:
-                if cod == u'ɲ': 
-                    cod = u'ɲ' # u'ŋ'
+                if cod == u'ɲ': cod = u'ŋ'
             elif palatals != 1 and nuc in [u'i', u'e', u'ɛ']:
-                if cod == u'ɲ': 
-                    cod = u'ɲ'#u'ŋ'
+                if cod == u'ɲ': cod = u'ŋ'
             if palatals == 1:
-                if cod == u'k' and nuc in [u'i', u'e', u'ɛ']: 
-                    cod = u'c'
+                if cod == u'k' and nuc in [u'i', u'e', u'ɛ']: cod = u'c'
 
         # Velar Fronting (Southern and Central dialects)
         else:
@@ -763,48 +621,14 @@ def convert(word, dialect, glottal, pham, cao, palatals, delimit):
 ########################333
 from vinorm import *
 from underthesea import word_tokenize
-import eng_to_ipa
-
+import epitran
 
 SET=[S_onsets, S_nuclei, S_codas#, S_tones
     , S_onglides, S_offglides, S_onoffglides, S_qu, S_gi,     C_onsets, C_nuclei, C_codas#, C_tones
     , C_onglides, C_offglides, C_onoffglides, C_qu, C_gi,     N_onsets, N_nuclei, N_codas#, N_tones
-    , N_onglides, N_offglides, N_onoffglides, N_qu, N_gi,     Cus_onsets, Cus_nuclei, Cus_codas#, N_tones
-    , Cus_onglides, Cus_offglides, Cus_onoffglides, Cus_qu, Cus_gi]
+    , N_onglides, N_offglides, N_onoffglides, N_qu, N_gi]
 DICT={}
-
-#121 in total
-syms=['ʷiə', 'uəj', 'iəw', 'k͡p', 'ʷɤ̆', 'ɤ̆j', 'ŋ͡m', 'kwi', 'ɤ̆w', 'ɯəj', 'ʷen', 'ʷiu', 'ʷet', 'ɯəw', 'ʷɛ', 'ʷɤ', 'ɯj', 'oj', 'ăw', 'zi', 'kw', 'aɪ', 'iɛ', 'ɤ̆', 'ɔ:', 'ăj', 'ʷa', 'eə', 'u:', 'uj', 'aʊ', 'uə', 'aj', 'iə', 'iw', 'əʊ', 'ɑ:', 'tʃ', 'ʷe', 'ɛu', 'ɔɪ', 'ʷi', 'eɪ', 'ɤj', 'ɯw', 'ɛj', 'ɔj', 'i:', 't∫', 'ɪə', 'ʷă', 'ɜ:', 'tʰ', 'dʒ', 'ew', 'ʊə', 'ɯə', 'aw', '3', 'θ', 'v', 'ʊ', 'ʤ', 'ɔ', '1', 'ʧ', 'ʈ', ' ', 'd', 'i', 'ɣ', 'ɲ', 'ɤ', '?', 'ɪ', 'l', '.', 'j', ':', 't', 'ʒ', 'ə', 'ʌ', 'm', '!', '∫', 'ð', 'u', 'e', 'w', 'p', 'ʃ', 'æ', "'", 'h', 'o', 'k', '5', 'g', '4', 'n', ';', 'r', 'b', 'ɯ', 'a', 's', 'ʐ', 'η', 'ŋ', 'ɒ', 'ʂ', '_', 'f', ',', 'ɛ', 'z', '6', '2', 'x', 'ă']
-def Parsing(listParse, text, delimit):
-    undefine_symbol = "'"
-    if listParse == "default":
-        listParse=['ʷiə', 'uəj', 'iəw', 'k͡p', 'ʷɤ̆', 'ɤ̆j', 'ŋ͡m', 'kwi', 'ɤ̆w', 'ɯəj', 'ʷen', 'ʷiu', 'ʷet', 'ɯəw', 'ʷɛ', 'ʷɤ', 'ɯj', 'oj', 'ăw', 'zi', 'kw', 'aɪ', 'iɛ', 'ɤ̆', 'ɔ:', 'ăj', 'ʷa', 'eə', 'u:', 'uj', 'aʊ', 'uə', 'aj', 'iə', 'iw', 'əʊ', 'ɑ:', 'tʃ', 'ʷe', 'ɛu', 'ɔɪ', 'ʷi', 'eɪ', 'ɤj', 'ɯw', 'ɛj', 'ɔj', 'i:', 't∫', 'ɪə', 'ʷă', 'ɜ:', 'tʰ', 'dʒ', 'ew', 'ʊə', 'ɯə', 'aw', '3', 'θ', 'v', 'ʊ', 'ʤ', 'ɔ', '1', 'ʧ', 'ʈ', ' ', 'd', 'i', 'ɣ', 'ɲ', 'ɤ', '?', 'ɪ', 'l', '.', 'j', ':', 't', 'ʒ', 'ə', 'ʌ', 'm', '!', '∫', 'ð', 'u', 'e', 'w', 'p', 'ʃ', 'æ', "'", 'h', 'o', 'k', '5', 'g', '4', 'n', ';', 'r', 'b', 'ɯ', 'a', 's', 'ʐ', 'η', 'ŋ', 'ɒ', 'ʂ', '_', 'f', ',', 'ɛ', 'z', '6', '2', 'x', 'ă']
-    listParse.sort(reverse = True,key=len)
-    output=""
-    skip=0
-    for ic,char in enumerate(text):
-        #print(char,skip)
-        check = 0
-        if skip>0:
-            skip=skip-1
-            continue
-        for l in listParse:
-            
-            if len(l) <= len(text[ic:]) and l == text[ic:ic+len(l)]:
-                output+=delimit+l
-                check =1
-                skip=len(l)-1
-                break
-        if check == 0:
-            #Case symbol not in list
-            if str(char) in ["ˈ","ˌ","*"]:
-                continue
-            print("this is not in symbol :"+ char+":")
-            output+=delimit+undefine_symbol
-    return output.rstrip()+delimit
-
-#print("Parsing",Parsing("default","iu   iu","|"))
-
+syms=['ɲ', 'ɯəw', 'ɯəj', 'ɯə', 'ɯw', 'ɯj', 'ɯ', 'ɤ̆w', 'ɤ̆j', 'ɤ̆', 'ɤj', 'ɤ', 'ɣ', 'ɛu', 'ɛ', 'ɔj', 'ɔ', 'ŋ', 'ăw', 'ăj', 'ă', 'zi', 'z', 'x', 'v', 'uəj', 'uə', 'uj', 'u', 'tʰ', 't', 's', 'p', 'oj', 'o', 'n', 'm', 'l', 'kwi', 'kw', 'k', 'iɛ', 'iəw', 'iə', 'iw', 'iu', 'i', 'h', 'f', 'ew', 'et', 'en', 'ej', 'e', 'd', 'c', 'b', 'aw', 'aj', 'a', '_', '?', ';', ':', '6', '5', '4', '3', '2', '1', '.', ',', '!', ' ']
 
 
 def getSymbol():
@@ -812,15 +636,12 @@ def getSymbol():
         DICT.update(s)
     list_phoneme=DICT.values()
     list_phoneme=list(list_phoneme)
-    English_phoneme=["p","b","t","d","t∫","dʒ","k","g","f","v","ð","θ","s","z","∫","ʒ","m","n","η","l","r","w","j","ɪ","i:","ʊ","u:","e","ə","ɜ:","ɒ","ɔ:","æ","ʌ","ɑ:","ɪə","ʊə","eə","eɪ","ɔɪ","aɪ","əʊ","aʊ",'ʃ',"ʤ","ʧ"]
+    English_phoneme=[]
     word_pad = ["_"]
     space = [" "]
     tone=["1","2","3","4","5","6"]
-    punctuation = [".",",","!",":","?",";","'"] #" ' ( ) Have been removed due to none sound
-
-    modifi = ["k͡p","ŋ͡m"]
-
-    symbols = list_phoneme + space+word_pad + English_phoneme + punctuation + tone + modifi
+    punctuation = [".",",","!",":","?",";"] #" ' ( ) Have been removed due to none sound
+    symbols = list_phoneme + space+word_pad + English_phoneme + punctuation + tone
     symbols = list(set(symbols))
     symbols.sort(reverse = True,key=len) 
     return symbols
@@ -830,55 +651,7 @@ def vi2IPA_pitrain(text):
     r=epi.transliterate(text)
     return r
 
-def T2IPA_split(text,delimit):
-    sys.path.append('./Rules')      # make sure we can find the Rules files
-    #Setup option
-    glottal = 0
-    pham = 0 
-    cao = 0
-    palatals = 0
-    tokenize = 0
-    dialect='n' #"c""s"
-    tone_type=0
-    if tone_type==0:
-        pham=1
-    else:
-        cao=1
-    #Input text
-    line = text
-    if line =='\n':
-        return ""
-    else:
-        compound = u''
-        ortho = u'' 
-        words = line.split()
-        ## toss len==0 junk
-        words = [word for word in words if len(word)>0]
-        ## hack to get rid of single hyphens or underscores
-        words = [word for word in words if word!=u'-']
-        words = [word for word in words if word!=u'_']
-        for i in range(0,len(words)):
-            word = words[i].strip()
-            ortho += word
-            word = word.strip(punctuation).lower()
-            ## 29.03.16: check if tokenize is true
-            ## if true, call this routine for each substring
-            ## and re-concatenate 
-            if (tokenize and '-' in word) or (tokenize and '_' in word):
-                substrings = re.split(r'(_|-)', word)
-                values = substrings[::2]
-                delimiters = substrings[1::2] + ['']
-                ipa = [convert(x, dialect, glottal, pham, cao, palatals, delimit).strip() for x in values]
-                seq = ''.join(v+d for v,d in zip(ipa, delimiters))
-            else:
-                seq = convert(word, dialect, glottal, pham, cao, palatals, delimit).strip()
-            # concatenate
-            if len(words) >= 2:
-                ortho += ' '
-            if i < len(words)-1:
-                seq = seq+u' '
-            compound = compound + seq
-        return compound
+
 def T2IPA(text):
     sys.path.append('./Rules')      # make sure we can find the Rules files
     #Setup option
@@ -929,60 +702,11 @@ def T2IPA(text):
                 seq = seq+u' '
             compound = compound + seq
         return compound
-EN={"a":"ây","ă":"á","â":"ớ","b":"bi","c":"si","d":"đi","đ":"đê","e":"i","ê":"ê","f":"ép","g":"giy","h":"ếch","i":"ai","j":"giây","k":"cây","l":"eo","m":"em","n":"en","o":"âu","ô":"ô","ơ":"ơ","p":"pi","q":"kiu","r":"a","s":"ét","t":"ti","u":"diu","ư":"ư","v":"vi","w":"đắp liu","x":"ít","y":"quai","z":"giét"}
-import re
-def vi2IPA_split(texts,delimit):
-    tess = texts.split(".")
-    Results =""
-    for text in tess:
-        print("------------------------------------------------------")
-        TN= TTSrawUpper_punc_unknown(text)
-        print("------------------------------------------------------")
-        print("Text normalize:              ",TN)
-        TK= word_tokenize(TN)
-        print("Vietnamese Tokenize:         ",TK)
-        IPA=""
 
-        for tk in TK:
-            ipa = T2IPA_split(tk,delimit).replace(" ","_")
-            if ipa =="":
-                IPA+=delimit+tk+delimit+" "
-            elif ipa[0]=="[" and ipa[-1]=="]":
-                eng = eng_to_ipa.convert(tk)
-                if eng[-1] == "*":
-                    if tk.lower().upper() == tk:
-                        #print("ENGLISH",tk)
-                        #Đọc tiếng anh từng chữ
-                        letter2sound=""
-                        for char in tk:
-                            CHAR = str(char).lower()
-                            if CHAR in list(EN.keys()):
-                                letter2sound+=EN[CHAR]+" "
-                            else:
-                                letter2sound+=char+" "
-                        IPA+=T2IPA_split(letter2sound,delimit)+" "
-                    else:
-                        #Giữ nguyên
-                        IPA+=Parsing("default",tk.lower(),delimit)+" "
-                else:
-                    IPA+=Parsing("default",eng,delimit)+" "
-                #Check tu dien tieng anh Etrain bưc
-                #Neu co Mapping
-                #Neu khong, check co nguyen am
-                #Neu co de nguyen
-                #Neu khong danh van
-                print("                                    ..................Out of domain word: " ,ipa)
-            else:
-                IPA+=ipa+" "
-        IPA=re.sub(delimit+'+', delimit, IPA)
-        IPA=re.sub(' +', ' ', IPA)
-        print("IPA Vietnamese:             ",IPA)
-        print("------------------------------------------------------")
-        Results+= IPA.rstrip()+" "+delimit+"."+delimit+" "
-    return Results.rstrip()
+
 def vi2IPA(text):
     print("------------------------------------------------------")
-    TN= TTSrawUpper_punc_unknown(text)
+    TN= TTSnorm_punc_unknown(text)
     print("------------------------------------------------------")
     print("Text normalize:              ",TN)
     TK= word_tokenize(TN)
@@ -993,150 +717,45 @@ def vi2IPA(text):
         if ipa =="":
             IPA+=tk+" "
         elif ipa[0]=="[" and ipa[-1]=="]":
-            eng = eng_to_ipa.convert(tk)
-            if eng[-1] == "*":
-                if tk.lower().upper() == tk:
-                    #Đọc tiếng anh từng chữ
-                    letter2sound=""
-                    for char in tk:
-                        CHAR = str(char).lower()
-                        if CHAR in list(EN.keys()):
-                            letter2sound+=EN[CHAR]+" "
-                        else:
-                            letter2sound+=char+" "
-                    IPA+=T2IPA_split(letter2sound,"")+" "
-                else:
-                    #Giữ nguyên
-                    IPA+=Parsing("default",tk,"")+" "
-            else:
-                IPA+=eng+" "
-            #Check tu dien tieng anh Etrain bưc
+            #Check tu dien tieng anh Etrain
             #Neu co Mapping
             #Neu khong, check co nguyen am
             #Neu co de nguyen
             #Neu khong danh van
+            eptran = ""
             print("                                    ..................Out of domain word: " ,ipa)
+            IPA+= eptran +" "
         else:
             IPA+=ipa+" "
-    IPA=re.sub(' +', ' ', IPA)
     print("IPA Vietnamese:             ",IPA)
     print("------------------------------------------------------")
     return IPA
 
-def checkDict():
-    cout=0
-    trung=0
-    List_token=[]
-    List_pair = []
-    with open("Popular.txt", encoding="utf-8") as f:
-        content=f.read().splitlines()
-        for line in content:
-            #nor_tr = vi2IPA_pitrain(line)
-            #nor = vi2IPA(line)
-            nor = T2IPA(line)
-            if nor in List_token:
-                print(line + "  -> "+nor)
-                trung +=1
-                List_pair.append(line)
-            List_token.append(nor)
-            if nor=="":
-                cout+=1
-                print(line)
-    print("Number of token can not convert: ",cout)
-    print("Number of token in the same mapping:",trung)
-    List_token = list(set(List_token))
-    #print(List_token)
-    print(len(List_token))
-    ################################
-    #Looking for pair
-    Pair = {}
-    for lt in List_pair:
-        Pair[T2IPA(lt)] = lt
-    cout_same=0
-    with open("Popular.txt", encoding="utf-8") as f:
-        content=f.read().splitlines()
-        for line in content:
-            if T2IPA(line) in Pair:
-                lin2 =Pair[T2IPA(line)]
-                if line != lin2:
-                    if (lin2[0]=="k" and line[0]=="c") or (lin2[-1] in ['i','í','ì','ĩ','ỉ','ị'] and line[-1] in ['y','ý','ỳ','ỷ','ỹ','ỵ']) or (lin2[-1] in ['y','ý','ỳ','ỷ','ỹ','ỵ'] and line[-1] in ['i','í','ì','ĩ','ỉ','ị']):
-                        continue
-                    cout_same+=1
-                    print(line+ "  <-> " + lin2 +"\t\t:\t\t"+T2IPA(line))
-    print("Same pair:" , cout_same)
-
-    #Các trường hợp dẫn đến trùng âm là:  
-    # Phương ngữ khác nhau đã thống nhất ở list custom  
-    # Các trường hợp có cách bỏ dấu khác nhau đều gộp chung làm một 
-
-    #Disable convert from 'ɲ' to 'ɲ'' in north
-    #Các âm vòng ở đây i chang không vòm: không có w ở trước như: "oa,ua,a" đều như một > must consider (nhưng nếu thêm vào ảnh hưởng chữ qu cũng ra w)
-                #Try to add ʷ to all start o and u as in wiki
-    
-    #Same positive
-    #k <-> c
-    #g <-> gh
-    #i <-> y
-
-    #Same negative / need to fix
-    #oe <-> uê   -> fix oe from e to ɛ
-    #âm cuối: ch : k theo bắc : t theo nam -> custom k vì nó giảm trùng nhiều hơn 241->153 case
-              #Tuy nhiên cuối cùng "ch" "c" "t" không phân âm được => ý tưởng mượn "tʃ" trong teach and watch để thay thế => k for c , t for t, tʃ for ch
-    #Thay offglide: úy -> wi để phân biệt với úi
-
-
-    #Remain
-    '''
-    di  <-> gi              :               zi1
-    dìm  <-> gìm            :               zim2
-    din  <-> gin            :               zin1
-    díp  <-> gíp            :               zip5
-    gen  <-> ghen           :               ɣɛn1
-    ghì  <-> gì             :               ɣi2
-    ghích  <-> gích         :               ɣitʃ5
-    ia  <-> iê              :               iə1
-    iêu  <-> yêu            :               iəw1
-    khoắng  <-> khuắng              :               xwʷăŋ5
-    khỏe  <-> khoẻ          :               xwʷɛ4
-    khua  <-> khuơ          :               xuə1
-    lóe  <-> loé            :               lwʷɛ5
-    ngét  <-> nghét         :               ŋɛt5
-    ngễu  <-> nghễu         :               ŋɛu3
-    nghía  <-> ngía         :               ŋiə5
-    nghịu  <-> ngịu         :               ŋiw6
-    nghoèo  <-> ngoèo               :               ŋwew2
-    quít  <-> quýt          :               kwit5
-    thủa  <-> thuở          :               tʰuə4
-    tòe  <-> toè            :               twʷɛ2
-    ua  <-> uơ              :               uə1
-    ưa  <-> ươ              :               ɯə1
-    xõa  <-> xoã            :               swʷa3
-    '''
-
-    #Ở đây tiết kiệm chi phí chạy máy không normal phoneme về cường độ âm sắc chỉ dừng từ 1->6
-    #học ác cho kết quả "c" khác nhau
+'''
+cout=0
+List_token=[]
+with open("Popular.txt", encoding="utf-8") as f:
+    content=f.read().splitlines()
+    for line in content:
+        nor_tr = vi2IPA_pitrain(line)
+        nor = vi2IPA(line)
+        print(nor)
+        List_token.append(nor)
+        if nor=="":
+            cout+=1
+print("cout",cout)
+List_token = list(set(List_token))
+print(List_token)
+print(len(List_token))
 
 
 
-###################################################
-
-#checkDict()
-#print(vi2IPA_split("!Singapo english?   đại học  là IUYE gì     khôngtontaij NIYE BoOK","'"))
-#check các ipa của tiếng anh
-#print(vi2IPA_split("Another table was prepared to show available onsets. Onsets are splitted into 3 types. Type 1 are onsets which has one letter ","/"))
-#Lọc bỏ dấu nhấn của tiếng anh "'"  
-#print(vi2IPA_split("speech? Secondly, we  paper, we investigate work! One is that e language to another by","/").replace("/",""))
-#Case need to be deal:
-# NIYE BoOK
 
 
 print(len(getSymbol()))
 print(getSymbol())
-if "'" in getSymbol():
-    print("Yes")
-else:
-    print("No")
-'''
+
+
 test="t"
 if test in syms:
     print(test)
@@ -1144,9 +763,7 @@ else:
     print("none")
 '''
 
-###################################################
 
-#Step
 #Vinorm
 #Underthesea
 #For each Convert to phoneme
@@ -1158,5 +775,5 @@ else:
 #Now
 #+Thêm kí tự IPA của tiếng ANH
 #+Thêm xử lí case không có cũng như case Tiếng anh: => dùng etrain cho tiếng anh
-#+Deal case thống nhất âm vực phoneme -> ok
+#+Deal case thống nhất âm vực phoneme
 #+Get lại bộ symbol
