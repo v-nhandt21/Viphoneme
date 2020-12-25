@@ -14,6 +14,7 @@
 pip install vinorm
 pip install underthesea
 pip install eng_to_ipa
+pip install git+git://github.com/quadrismegistus/prosodic.git
 ```
 
 Usage:

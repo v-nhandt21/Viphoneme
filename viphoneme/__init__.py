@@ -1,5 +1,8 @@
 
 #  (C1)(w)V(G|C2)+T
+
+#symbol " ' " for undefine symbol and sign for english
+
 '''
 C1 = initial consonant onset
 w = labiovelar on-glide /w/
@@ -133,6 +136,7 @@ import sys, codecs, re
 from io import StringIO
 from optparse import OptionParser
 from string import punctuation
+import prosodic as p
 
 def trans(word, dialect, glottal, pham, cao, palatals):
 
@@ -337,6 +341,32 @@ from underthesea import word_tokenize
 import eng_to_ipa
 
 syms=['ɯəj', 'ɤ̆j', 'ʷiə', 'ɤ̆w', 'ɯəw', 'ʷet', 'iəw', 'uəj', 'ʷen', 'tʰw', 'ʷɤ̆', 'ʷiu', 'kwi', 'ŋ͡m', 'k͡p', 'cw', 'jw', 'uə', 'eə', 'bw', 'oj', 'ʷi', 'vw', 'ăw', 'ʈw', 'ʂw', 'aʊ', 'fw', 'ɛu', 'tʰ', 'tʃ', 'ɔɪ', 'xw', 'ʷɤ', 'ɤ̆', 'ŋw', 'ʊə', 'zi', 'ʷă', 'dw', 'eɪ', 'aɪ', 'ew', 'iə', 'ɣw', 'zw', 'ɯj', 'ʷɛ', 'ɯw', 'ɤj', 'ɔ:', 'əʊ', 'ʷa', 'mw', 'ɑ:', 'hw', 'ɔj', 'uj', 'lw', 'ɪə', 'ăj', 'u:', 'aw', 'ɛj', 'iw', 'aj', 'ɜ:', 'kw', 'nw', 't∫', 'ɲw', 'eo', 'sw', 'tw', 'ʐw', 'iɛ', 'ʷe', 'i:', 'ɯə', 'dʒ', 'ɲ', 'θ', 'ʌ', 'l', 'w', '1', 'ɪ', 'ɯ', 'd', '∫', 'p', 'ə', 'u', 'o', '3', 'ɣ', '!', 'ð', 'ʧ', '6', 'ʒ', 'ʐ', 'z', 'v', 'g', 'ă', '_', 'æ', 'ɤ', '2', 'ʤ', 'i', '.', 'ɒ', 'b', 'h', 'n', 'ʂ', 'ɔ', 'ɛ', 'k', 'm', '5', ' ', 'c', 'j', 'x', 'ʈ', ',', '4', 'ʊ', 's', 'ŋ', 'a', 'ʃ', '?', 'r', ':', 'η', 'f', ';', 'e', 't', "'"]
+
+def normEng (eng,delemit):
+    x= p.Text(eng)
+    x.parse()
+    PAR = str(x.bestParses()[0]).split("|")
+    SYL = x.syllables()
+    if len(PAR) != len(SYL):
+        print("check dif len: ", eng)
+        result="/"+"/".join(list(eng))
+        return result
+
+    for i,syl in enumerate(SYL):
+        syllable = str(syl).replace("'","").replace("ː","").replace("ɑ","a")
+        if PAR[i].lower().upper() == PAR[i]:
+            result+=syllable+"'5"+" "
+        else:
+            result+=syllable+"'1"+" "
+    result=result.rstrip(" ")
+    if delemit !="":
+        takemore=""
+        for r in result:
+            if r in syms:
+                takemore+=delemit+r
+        result=takemore
+    return result
+
 def Parsing(listParse, text, delimit):
     undefine_symbol = "'"
     if listParse == "default":
@@ -345,7 +375,7 @@ def Parsing(listParse, text, delimit):
     output=""
     skip=0
     for ic,char in enumerate(text):
-        #print(char,skip)
+        ##print(char,skip)
         check = 0
         if skip>0:
             skip=skip-1
@@ -361,7 +391,7 @@ def Parsing(listParse, text, delimit):
             #Case symbol not in list
             if str(char) in ["ˈ","ˌ","*"]:
                 continue
-            print("this is not in symbol :"+ char+":")
+            #print("this is not in symbol :"+ char+":")
             output+=delimit+undefine_symbol
     return output.rstrip()+delimit
 
@@ -469,24 +499,24 @@ EN={"a":"ây","ă":"á","â":"ớ","b":"bi","c":"si","d":"đi","đ":"đê","e":"
 import re
 def vi2IPA_split(texts,delimit):
     content=[]
-    with open("Popular.txt",encoding="utf-8") as f:
+    with open(imp.find_module('viphoneme')[1]+"/Popular.txt",encoding="utf-8") as f:
         content=f.read().splitlines()
     tess = texts.split(".")
     Results =""
     for text in tess:
-        print("------------------------------------------------------")
-        #TN= TTSrawUpper_punc_unknown(text)
-        TN=text
-        print("------------------------------------------------------")
-        print("Text normalize:              ",TN)
+        #print("------------------------------------------------------")
+        TN= TTSnorm(text)
+        #TN=text
+        #print("------------------------------------------------------")
+        #print("Text normalize:              ",TN)
         TK= word_tokenize(TN)
-        print("Vietnamese Tokenize:         ",TK)
+        #print("Vietnamese Tokenize:         ",TK)
 
-
+        
         for iuv,under_valid in enumerate(TK):
             token_under=under_valid.split(" ")
             checkinvalid=0
-            #print(token_under)
+            ##print(token_under)
             if len(token_under) >1:
                 for tok in token_under:
                     if tok not in content or "[" in T2IPA(tok):
@@ -506,7 +536,7 @@ def vi2IPA_split(texts,delimit):
                 eng = eng_to_ipa.convert(tk)
                 if eng[-1] == "*":
                     if tk.lower().upper() == tk:
-                        #print("ENGLISH",tk)
+                        ##print("ENGLISH",tk)
                         #Đọc tiếng anh từng chữ
                         letter2sound=""
                         for char in tk:
@@ -518,32 +548,38 @@ def vi2IPA_split(texts,delimit):
                         IPA+=T2IPA_split(letter2sound,delimit)+" "
                     else:
                         #Giữ nguyên
+                        #Future: test experiment" Nếu từ unknow có thể dùng eng_norm để chuyển qua thay thế chứ không cần giữ nguyên như này
                         IPA+=Parsing("default",tk.lower(),delimit)+" "
                 else:
-                    IPA+=Parsing("default",eng,delimit)+" "
+                    #This use for version english not splited by syllable
+                    #IPA+=Parsing("default",eng,delimit)+" "
+                    #This version will split english to each syllable
+                    IPA+=normEng(tk,delimit)+ delimit+" "
+
+
                 #Check tu dien tieng anh Etrain bưc
                 #Neu co Mapping
                 #Neu khong, check co nguyen am
                 #Neu co de nguyen
                 #Neu khong danh van
-                print("                                    ..................Out of domain word: " ,ipa)
+                #print("                                    ..................Out of domain word: " ,ipa)
             else:
                 IPA+=ipa+" "
         IPA=re.sub(delimit+'+', delimit, IPA)
         IPA=re.sub(' +', ' ', IPA)
-        print("IPA Vietnamese:             ",IPA)
-        print("------------------------------------------------------")
+        #print("IPA Vietnamese:             ",IPA)
+        #print("------------------------------------------------------")
         Results+= IPA.rstrip()+" "+delimit+"."+delimit+" "
 
     
     return Results.rstrip()
 def vi2IPA(text):
-    print("------------------------------------------------------")
-    TN= TTSrawUpper_punc_unknown(text)
-    print("------------------------------------------------------")
-    print("Text normalize:              ",TN)
+    #print("------------------------------------------------------")
+    TN= TTSnorm(text)
+    #print("------------------------------------------------------")
+    #print("Text normalize:              ",TN)
     TK= word_tokenize(TN)
-    print("Vietnamese Tokenize:         ",TK)
+    #print("Vietnamese Tokenize:         ",TK)
     IPA=""
     for tk in TK:
         ipa = T2IPA(tk).replace(" ","_")
@@ -572,10 +608,10 @@ def vi2IPA(text):
             #Neu khong, check co nguyen am
             #Neu co de nguyen
             #Neu khong danh van
-            print("                                    ..................Out of domain word: " ,ipa)
+            #print("                                    ..................Out of domain word: " ,ipa)
         else:
             IPA+=ipa+" "
     IPA=re.sub(' +', ' ', IPA)
-    print("IPA Vietnamese:             ",IPA)
-    print("------------------------------------------------------")
+    #print("IPA Vietnamese:             ",IPA)
+    #print("------------------------------------------------------")
     return IPA

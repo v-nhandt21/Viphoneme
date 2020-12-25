@@ -944,7 +944,7 @@ def vi2IPA_split(texts,delimit):
     Results =""
     for text in tess:
         print("------------------------------------------------------")
-        TN= TTSrawUpper_punc_unknown(text)
+        TN= TTSnorm(text)
         print("------------------------------------------------------")
         print("Text normalize:              ",TN)
         TK= word_tokenize(TN)
@@ -1013,7 +1013,7 @@ def vi2IPA_split(texts,delimit):
     return Results.rstrip()
 def vi2IPA(text):
     print("------------------------------------------------------")
-    TN= TTSrawUpper_punc_unknown(text)
+    TN= TTSnorm(text)
     print("------------------------------------------------------")
     print("Text normalize:              ",TN)
     TK= word_tokenize(TN)
