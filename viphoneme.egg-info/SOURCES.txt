@@ -1,0 +1,16 @@
+LICENSE
+MANIFEST.in
+README.md
+setup.py
+viphoneme/Popular.txt
+viphoneme/T2IPA.py
+viphoneme/__init__.py
+viphoneme/get_english_sym.py
+viphoneme/restore.txt
+viphoneme/syms.py
+viphoneme/test.py
+viphoneme/text2sequence.py
+viphoneme.egg-info/PKG-INFO
+viphoneme.egg-info/SOURCES.txt
+viphoneme.egg-info/dependency_links.txt
+viphoneme.egg-info/top_level.txt

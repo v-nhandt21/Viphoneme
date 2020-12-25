@@ -351,7 +351,7 @@ def normEng (eng,delemit):
         print("check dif len: ", eng)
         result="/"+"/".join(list(eng))
         return result
-    result = ""
+
     for i,syl in enumerate(SYL):
         syllable = str(syl).replace("'","").replace("ː","").replace("ɑ","a")
         if PAR[i].lower().upper() == PAR[i]:

@@ -4,7 +4,7 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 setup(
     name='viphoneme',
-    version='1.0.2',    
+    version='2.0.0',    
     description='Python package for convert text to phoneme ipa, use for cross language embedding Text-to-speech Reseach',
     long_description=long_description,
     long_description_content_type="text/markdown",
