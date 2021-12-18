@@ -1,10 +1,8 @@
 # Project Custom from vPhon for convert Raw text to IPA
 
-* Use for embeding TTS model using Tacotron2
+* Use for embeding TTS model using Tacotron2/Fastspeech2 ...
 
 * By using IPA, tacotron2 can deal with cases cross language as a proposal from futre paper
-
-* Include diary research in phoneme of Vietnamese, painful and character of Viet
 
 * Function include: Convert Grapheme to IPA, List same token output, normalize text with vinorm and wordtoken
 
@@ -15,6 +13,11 @@ pip install vinorm
 pip install underthesea
 pip install eng_to_ipa
 pip install git+git://github.com/quadrismegistus/prosodic.git
+```
+
+* Install viphoneme by pip
+```
+pip install viphoneme
 ```
 
 Usage:
@@ -44,3 +47,22 @@ Get list of symbol using for represent phoneme
 from viphoneme import syms
 print(syms)
 ```
+
+* Star me if you find it interesting :))
+
+* Cite me if you use it for paper:
+
+```
+@inproceedings{tri2020vietnamese,
+  title={Vietnamese Speech Synthesis with End-to-End Model and Text Normalization},
+  author={Tri, Nguyen Minh and Nam, Cao Xuan and others},
+  booktitle={2020 7th NAFOSTED Conference on Information and Computer Science (NICS)},
+  pages={179--184},
+  year={2020},
+  organization={IEEE}
+}
+```
+
+* This is for quick using to test TTS model in Vietnamese, there is too much more task to use it for production, such as OOV (You can handle it by using MFA from Kaldi or Transformer Aligner)
+
++ Montreal-Forced-Aligner: https://github.com/MontrealCorpusTools/Montreal-Forced-Aligner
