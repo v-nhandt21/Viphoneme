@@ -50,7 +50,7 @@ print(syms)
 
 * Star me if you find it interesting :))
 
-* Cite me if you use it for paper:
+* Cite me if you use it for paper :)):
 
 ```
 @inproceedings{tri2020vietnamese,
