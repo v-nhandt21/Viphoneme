@@ -64,4 +64,4 @@ print(syms)
 
 * This is for quick using to test TTS model in Vietnamese, there is too much more task to use it for production, such as OOV (You can handle it by using MFA from Kaldi or Transformer Aligner)
 
-+ Montreal-Forced-Aligner: https://github.com/MontrealCorpusTools/Montreal-Forced-Aligner
++ Montreal-Forced-Aligner: https://github.com/v-nhandt21/ViMFA
