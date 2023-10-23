@@ -4,13 +4,13 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 setup(
     name='viphoneme',
-    version='2.0.0',    
+    version='3.0.0',    
     description='Python package for convert text to phoneme ipa, use for cross language embedding Text-to-speech Reseach',
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url='https://github.com/NoahDrisort/Vie_Text2Graph2IPA',
+    url='https://github.com/v-nhandt21/Viphoneme',
     author='AILAB',
-    author_email='donhanbentre@gmail.com',
+    author_email='dotrinhan99@gmail.com',
     license='AILAB',
     packages=['viphoneme'],
     include_package_data=True,

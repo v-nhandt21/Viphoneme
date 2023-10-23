@@ -136,7 +136,7 @@ import sys, codecs, re
 from io import StringIO
 from optparse import OptionParser
 from string import punctuation
-import prosodic as p
+# import prosodic as p
 
 def trans(word, dialect, glottal, pham, cao, palatals):
 
@@ -343,29 +343,30 @@ import eng_to_ipa
 syms=['ɯəj', 'ɤ̆j', 'ʷiə', 'ɤ̆w', 'ɯəw', 'ʷet', 'iəw', 'uəj', 'ʷen', 'tʰw', 'ʷɤ̆', 'ʷiu', 'kwi', 'ŋ͡m', 'k͡p', 'cw', 'jw', 'uə', 'eə', 'bw', 'oj', 'ʷi', 'vw', 'ăw', 'ʈw', 'ʂw', 'aʊ', 'fw', 'ɛu', 'tʰ', 'tʃ', 'ɔɪ', 'xw', 'ʷɤ', 'ɤ̆', 'ŋw', 'ʊə', 'zi', 'ʷă', 'dw', 'eɪ', 'aɪ', 'ew', 'iə', 'ɣw', 'zw', 'ɯj', 'ʷɛ', 'ɯw', 'ɤj', 'ɔ:', 'əʊ', 'ʷa', 'mw', 'ɑ:', 'hw', 'ɔj', 'uj', 'lw', 'ɪə', 'ăj', 'u:', 'aw', 'ɛj', 'iw', 'aj', 'ɜ:', 'kw', 'nw', 't∫', 'ɲw', 'eo', 'sw', 'tw', 'ʐw', 'iɛ', 'ʷe', 'i:', 'ɯə', 'dʒ', 'ɲ', 'θ', 'ʌ', 'l', 'w', '1', 'ɪ', 'ɯ', 'd', '∫', 'p', 'ə', 'u', 'o', '3', 'ɣ', '!', 'ð', 'ʧ', '6', 'ʒ', 'ʐ', 'z', 'v', 'g', 'ă', '_', 'æ', 'ɤ', '2', 'ʤ', 'i', '.', 'ɒ', 'b', 'h', 'n', 'ʂ', 'ɔ', 'ɛ', 'k', 'm', '5', ' ', 'c', 'j', 'x', 'ʈ', ',', '4', 'ʊ', 's', 'ŋ', 'a', 'ʃ', '?', 'r', ':', 'η', 'f', ';', 'e', 't', "'"]
 
 def normEng (eng,delemit):
-    x= p.Text(eng)
-    x.parse()
-    PAR = str(x.bestParses()[0]).split("|")
-    SYL = x.syllables()
-    if len(PAR) != len(SYL):
-        print("check dif len: ", eng)
-        result="/"+"/".join(list(eng))
-        return result
-    result = ""
-    for i,syl in enumerate(SYL):
-        syllable = str(syl).replace("'","").replace("ː","").replace("ɑ","a")
-        if PAR[i].lower().upper() == PAR[i]:
-            result+=syllable+"'5"+" "
-        else:
-            result+=syllable+"'1"+" "
-    result=result.rstrip(" ")
-    if delemit !="":
-        takemore=""
-        for r in result:
-            if r in syms:
-                takemore+=delemit+r
-        result=takemore
-    return result
+    return eng
+    # x= p.Text(eng)
+    # x.parse()
+    # PAR = str(x.bestParses()[0]).split("|")
+    # SYL = x.syllables()
+    # if len(PAR) != len(SYL):
+    #     print("check dif len: ", eng)
+    #     result="/"+"/".join(list(eng))
+    #     return result
+    # result = ""
+    # for i,syl in enumerate(SYL):
+    #     syllable = str(syl).replace("'","").replace("ː","").replace("ɑ","a")
+    #     if PAR[i].lower().upper() == PAR[i]:
+    #         result+=syllable+"'5"+" "
+    #     else:
+    #         result+=syllable+"'1"+" "
+    # result=result.rstrip(" ")
+    # if delemit !="":
+    #     takemore=""
+    #     for r in result:
+    #         if r in syms:
+    #             takemore+=delemit+r
+    #     result=takemore
+    # return result
 
 def Parsing(listParse, text, delimit):
     undefine_symbol = "'"
