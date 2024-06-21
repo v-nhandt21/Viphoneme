@@ -575,12 +575,21 @@ def vi2IPA_split(texts,delimit):
     
     return Results.rstrip()
 def vi2IPA(text):
-    #print("------------------------------------------------------")
+
+    # Bỏ phần này để hoạt động với window
     TN= TTSnorm(text)
-    #print("------------------------------------------------------")
-    #print("Text normalize:              ",TN)
+    # Chuẩn hóa lại, tuy nhiên phần xử lý ngày tháng năm phải fix lại bằng text
+    # text = text.lower()
+
     TK= word_tokenize(TN)
     #print("Vietnamese Tokenize:         ",TK)
+
+    #Trong trường hợp word_tokenize sai
+    new_TK = []
+    for word in TK:
+        new_TK.extend(word.split())
+    TK = new_TK
+	
     IPA=""
     for tk in TK:
         ipa = T2IPA(tk).replace(" ","_")
