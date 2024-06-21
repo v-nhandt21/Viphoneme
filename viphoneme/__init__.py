@@ -577,11 +577,11 @@ def vi2IPA_split(texts,delimit):
 def vi2IPA(text):
 
     # Bỏ phần này để hoạt động với window
-    # TN= TTSnorm(text)
+    TN= TTSnorm(text)
     # Chuẩn hóa lại, tuy nhiên phần xử lý ngày tháng năm phải fix lại bằng text
-    text = text.lower()
+    # text = text.lower()
 
-	TK= word_tokenize(TN)
+    TK= word_tokenize(TN)
     #print("Vietnamese Tokenize:         ",TK)
 
     #Trong trường hợp word_tokenize sai
