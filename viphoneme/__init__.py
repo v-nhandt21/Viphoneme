@@ -581,6 +581,13 @@ def vi2IPA(text):
     #print("Text normalize:              ",TN)
     TK= word_tokenize(TN)
     #print("Vietnamese Tokenize:         ",TK)
+
+    #Trong trường hợp word_tokenize sai
+    new_TK = []
+    for word in TK:
+        new_TK.extend(word.split())
+    TK = new_TK
+	
     IPA=""
     for tk in TK:
         ipa = T2IPA(tk).replace(" ","_")
